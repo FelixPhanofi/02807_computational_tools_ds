@@ -1,3 +1,7 @@
+import pytest
+
+pytest.importorskip("torch")
+
 import numpy as np
 import pandas as pd
 import torch

@@ -22,7 +22,7 @@ import numpy as np
 import pandas as pd
 from scipy import sparse
 
-from afp.fingerprint import FINGERPRINTS_DIR, QUERY_KINDS
+from afp.paths import FINGERPRINTS_DIR, QUERY_KINDS
 
 
 @dataclass

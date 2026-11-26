@@ -18,7 +18,7 @@ import numpy as np
 import pandas as pd
 
 from afp.cluster import davies_bouldin
-from afp.fingerprint import FINGERPRINTS_DIR
+from afp.paths import FINGERPRINTS_DIR
 
 
 def radius_neighbours(x: np.ndarray, min_similarity: float, chunk: int = 2048) -> tuple[np.ndarray, np.ndarray]:

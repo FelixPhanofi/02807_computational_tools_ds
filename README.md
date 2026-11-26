@@ -18,13 +18,14 @@ LSH gave near-exhaustive recognition at 2.31× the single-query lookup speed. IV
 
 ## Setup
 
-[uv](https://docs.astral.sh/uv/), Python 3.12-3.13, Linux or Windows. Torch is the CUDA 11.8 build (MuQ on CPU takes about 1.6 s per window).
+[uv](https://docs.astral.sh/uv/), Python 3.12-3.13, Linux, Windows or macOS for the default environment (notebook, LSH, k-means, DBSCAN, tests, about 650 MB). The `pipeline` and `gpu` extras need Linux or Windows with an NVIDIA GPU; torch is the CUDA 11.8 build (MuQ on CPU takes about 1.6 s per window). Commands below that need an extra show it in `uv run --extra ...`.
 
 ```bash
-uv sync                    # core
-uv sync --extra notebook   # + Jupyter, matplotlib (notebooks)
-uv sync --extra gpu        # + CuPy/CUDA 12 (GPU LSH, scripts/compare_catalogues.py); extras can be combined
-uv run pytest tests/       # GPU tests skip without CuPy; tests need no data or model
+uv sync                    # default: light CPU environment (numpy, pandas, scipy, numba, matplotlib, Jupyter), no torch
+uv sync --extra pipeline   # + CUDA 11.8 torch and MuQ: data and fingerprint steps (Linux/Windows, NVIDIA GPU)
+uv sync --extra gpu        # + CuPy/CUDA 12: GPU LSH and IVF, scripts/compare_catalogues.py
+uv sync --extra cuda       # pipeline + gpu
+uv run pytest tests/       # torch and CuPy tests skip without their extras; tests need no data or model
 uv run invoke --list       # test, data, fmt
 ```
 
@@ -41,8 +42,8 @@ uv run invoke --list       # test, data, fmt
 Extract the Medium and Large ZIPs in the repository root. They include the shared Medium query fingerprints, window and track IDs, and metadata. All 110,320 Medium reference windows are preserved in Large. Small’s separately trained head and query set make its original scores a separate experiment. [Shared head, pre-projection features, optional open-set queries and checksums](https://github.com/nickiliak/02807_computational_tools_ds/releases/tag/v0.3-fingerprints).
 
 ```bash
-uv run python -m afp.data --subset small             # download + process everything (resumable, SHA-1 checked)
-uv run python -m afp.data --subset small --limit 50  # quick test on 50 tracks
+uv run --extra pipeline python -m afp.data --subset small             # download + process everything (resumable, SHA-1 checked)
+uv run --extra pipeline python -m afp.data --subset small --limit 50  # quick test on 50 tracks
 ```
 
 Each clip is decoded straight from the zip to 24 kHz mono int16, `data/processed/audio/<NNN>/<track_id>.npy`; re-running skips finished tracks. `manifest.csv` lists every processed track (id, path, duration, title, artist, genre); `skipped.csv` lists tracks that failed to decode or are under 10 s.
@@ -52,10 +53,10 @@ GitHub release `v0.2-fingerprints` has the `small` fingerprints, trained head (w
 ## Fingerprints (`src/afp/fingerprint.py`)
 
 ```bash
-uv run python -m afp.fingerprint cache     # MuQ features: every window, training pairs, evaluation queries
-uv run python -m afp.fingerprint train     # contrastive training of the 1024 -> 4096 -> 256 projection head
-uv run python -m afp.fingerprint encode    # write fingerprints, print exact-search top-1 per distortion
-uv run python -m afp.fingerprint cache --limit-tracks 200 --pairs 500 --queries 100   # quick trial
+uv run --extra pipeline python -m afp.fingerprint cache     # MuQ features: every window, training pairs, evaluation queries
+uv run --extra pipeline python -m afp.fingerprint train     # contrastive training of the 1024 -> 4096 -> 256 projection head
+uv run --extra pipeline python -m afp.fingerprint encode    # write fingerprints, print exact-search top-1 per distortion
+uv run --extra pipeline python -m afp.fingerprint cache --limit-tracks 200 --pairs 500 --queries 100   # quick trial
 ```
 
 All steps are resumable. Clips are cut into 10 s windows with a 5 s hop (35,326 windows for the 7,994 `small` tracks). MuQ is frozen; only the head trains, on (clean window, distorted copy) pairs. Tracks split 20/80: the 20% only supply training pairs, evaluation queries come from the other 80%, so the head is never scored on tracks it learned from.
@@ -68,11 +69,11 @@ All steps are resumable. Clips are cut into 10 s windows with a 5 s hop (35,326 
 - **Voice-over training** (`cache --voice-over`): training speech from LibriSpeech `train-clean-100`, test speech from `dev-clean` (disjoint speakers, so no test voice is heard in training). Sped-up, compression and the combined category stay unseen.
 
 ```bash
-uv run python -m afp.data --speech train   # 600 speech chunks, 100 train-clean-100 speakers
-uv run python -m afp.data --speech test    # 240 speech chunks, 40 dev-clean speakers
-uv run python -m afp.fingerprint cache --voice-over --pairs 10000 --queries 2000
-uv run python -m afp.fingerprint cache-tiktok   # features of 2,000 held-out TikTok-like queries
-uv run python -m afp.fingerprint encode         # also scores queries_tiktok when present
+uv run --extra pipeline python -m afp.data --speech train   # 600 speech chunks, 100 train-clean-100 speakers
+uv run --extra pipeline python -m afp.data --speech test    # 240 speech chunks, 40 dev-clean speakers
+uv run --extra pipeline python -m afp.fingerprint cache --voice-over --pairs 10000 --queries 2000
+uv run --extra pipeline python -m afp.fingerprint cache-tiktok   # features of 2,000 held-out TikTok-like queries
+uv run --extra pipeline python -m afp.fingerprint encode         # also scores queries_tiktok when present
 ```
 
 **Differences from the paper:** noise and reverb are synthetic (paper: MUSAN, Aachen RIRs), no Encodec compression, and the open MuQ checkpoint was trained on the Million Song Dataset, so the paper's numbers may not reproduce. MuQ weights are CC-BY-NC 4.0.
@@ -92,10 +93,10 @@ At threshold 0.7, head v2 finds 0.925 of standard and 0.668 of TikTok-like queri
 
 ## LSH retrieval (`src/afp/lsh.py`)
 
-Angular (random-hyperplane) LSH with multi-probe; optional numba reranker (`rerank.py`) and CUDA version (`gpu_retrieval.py` + `gpu_lsh.cu`, needs `--extra gpu`). Run notebooks with `uv sync --extra notebook` (add `--extra gpu` for the GPU one), then `uv run jupyter lab notebooks/<name>.ipynb` and Run All, or regenerate headless: `uv run jupyter nbconvert --execute --inplace --to notebook --ExecutePreprocessor.timeout=600 notebooks/<name>.ipynb`.
+Angular (random-hyperplane) LSH with multi-probe; optional numba reranker (`rerank.py`) and CUDA version (`gpu_retrieval.py` + `gpu_lsh.cu`, needs `--extra gpu`). Run the scripts below from the repository root with `uv run python scripts/<name>.py` (the GPU one with `uv run --extra gpu python scripts/gpu_retrieval.py`).
 
-- **`notebooks/lsh_retrieval.ipynb`** (CPU): track-disjoint parameter sweep, exact vs LSH by distortion, CPU timings; figure `reports/figures/lsh-retrieval.{pdf,png}`. It verifies the three v0.2 fingerprint archives in `data/processed/fingerprints/` against published digests and downloads missing ones.
-- **`notebooks/gpu_retrieval.ipynb`**: LSH vs exhaustive FP32 cosine on the same CUDA device. Picks a configuration on development tracks, then measures held-out identification, false acceptance after removing songs, and single/batched speed. Timing starts with embeddings in VRAM (model inference, disk, host-to-device copies and index build excluded). Set `AFP_DATASET_TAG` (`small` or `medium`); results go to dataset-specific JSON and PDF/PNG under `reports/` (`gpu-retrieval-{small,medium}.json`, `reports/figures/gpu-retrieval-*`, `gpu-operating-points-medium.pdf`). `AFP_RETUNE=1` reselects settings using latency on another GPU. Also: `reports/medium-pipeline.json` (hardware, source hashes, preprocessing, worker measurements) and `reports/medium-catalogue-audit.json` (split check; effect of adding reference tracks with head and queries fixed). Fingerprints: `gh release download v0.2-fingerprints --repo nickiliak/02807_computational_tools_ds --pattern '*.npz' --dir data/processed/fingerprints`.
+- **`scripts/lsh_retrieval.py`** (CPU, default environment, about 80 s): track-disjoint parameter sweep, exact vs LSH by distortion, CPU timings; figure `reports/figures/lsh-retrieval.{pdf,png}`. It verifies the three v0.2 fingerprint archives in `data/processed/fingerprints/` against published digests and downloads missing ones.
+- **`scripts/gpu_retrieval.py`** (CUDA): LSH vs exhaustive FP32 cosine on the same CUDA device. Picks a configuration on development tracks, then measures held-out identification, false acceptance after removing songs, and single/batched speed. Timing starts with embeddings in VRAM (model inference, disk, host-to-device copies and index build excluded). Set `AFP_DATASET_TAG` (`small` or `medium`); results go to dataset-specific JSON and PDF/PNG under `reports/` (`gpu-retrieval-{small,medium}.json`, `reports/figures/gpu-retrieval-*`, `gpu-operating-points-medium.pdf`). `AFP_RETUNE=1` reselects settings using latency on another GPU. Also: `reports/medium-pipeline.json` (hardware, source hashes, preprocessing, worker measurements) and `reports/medium-catalogue-audit.json` (split check; effect of adding reference tracks with head and queries fixed). Fingerprints: `gh release download v0.2-fingerprints --repo nickiliak/02807_computational_tools_ds --pattern '*.npz' --dir data/processed/fingerprints`.
 
 FMA `medium` on an RTX 4090: 110,320 windows from 24,970 tracks; 7,458 standard and 8,992 TikTok-like queries; synthetic distortions; the test includes tracks made unsearchable by the silence filter.
 
@@ -114,14 +115,14 @@ Fits a new head on 50,000 pairs; writes archives for the clean reference catalog
 ```powershell
 $root = 'data/medium'; $data = "$root/data"; $model = "$root/models/projection_head.pt"; $backbone = "$root/muq"
 $env:OMP_NUM_THREADS = '1'; $env:OPENBLAS_NUM_THREADS = '1'; $env:MKL_NUM_THREADS = '1'
-uv run python -m afp.data --data-dir $data --subset medium
-uv run python -m afp.data --data-dir $data --speech train
-uv run python -m afp.data --data-dir $data --speech test
-uv run hf download OpenMuQ/MuQ-large-msd-iter --revision 0562a57814f6f8bbd9fdea0a25921a2fce1a841a --local-dir $backbone
-uv run python -m afp.fingerprint --data-dir $data --seed 0 cache --backbone $backbone --train-frac 0.2 --pairs 50000 --queries 10000 --voice-over --batch-size 16 --device cuda --precision bf16 --audio-cache-gb 8 --prep-workers 8
-uv run python -m afp.fingerprint --data-dir $data --seed 0 cache-tiktok --backbone $backbone --train-frac 0.2 --queries 10000 --batch-size 64 --device cuda --precision bf16 --audio-cache-gb 8 --prep-workers 12
-uv run python -m afp.fingerprint --data-dir $data --model $model --seed 0 train --epochs 30 --batch-size 512 --device cuda
-uv run python -m afp.fingerprint --data-dir $data --model $model encode --device cuda --skip-evaluation
+uv run --extra pipeline python -m afp.data --data-dir $data --subset medium
+uv run --extra pipeline python -m afp.data --data-dir $data --speech train
+uv run --extra pipeline python -m afp.data --data-dir $data --speech test
+uv run --extra pipeline hf download OpenMuQ/MuQ-large-msd-iter --revision 0562a57814f6f8bbd9fdea0a25921a2fce1a841a --local-dir $backbone
+uv run --extra pipeline python -m afp.fingerprint --data-dir $data --seed 0 cache --backbone $backbone --train-frac 0.2 --pairs 50000 --queries 10000 --voice-over --batch-size 16 --device cuda --precision bf16 --audio-cache-gb 8 --prep-workers 8
+uv run --extra pipeline python -m afp.fingerprint --data-dir $data --seed 0 cache-tiktok --backbone $backbone --train-frac 0.2 --queries 10000 --batch-size 64 --device cuda --precision bf16 --audio-cache-gb 8 --prep-workers 12
+uv run --extra pipeline python -m afp.fingerprint --data-dir $data --model $model --seed 0 train --epochs 30 --batch-size 512 --device cuda
+uv run --extra pipeline python -m afp.fingerprint --data-dir $data --model $model encode --device cuda --skip-evaluation
 ```
 
 MuQ stays in GPU memory per cache stage and every batch is checked for finite values; with BF16 (supported GPUs) non-finite batches are retried in FP32. Audio preparation overlaps inference; the 8 GiB host cache holds reusable int16 waveforms (lower `--audio-cache-gb` with less RAM). Finished feature shards are reused after an interruption. Use separate data directories for different seeds, model revisions, audio or augmentation settings.
@@ -129,7 +130,7 @@ MuQ stays in GPU memory per cache stage and every batch is checked for finite va
 **Catalogue size check** (needs `--extra gpu`; run after encoding medium): validates shapes and norms, checks that evaluation tracks are absent from the training pairs, prints checksums and paired counts per query set. It uses the medium head for both searches, restricts the small index to tracks in the v0.2 small manifest (download: `gh release download v0.2-fingerprints --repo nickiliak/02807_computational_tools_ds --pattern manifest.csv --dir data/processed`, SHA-256 `8fe1d544d30f2a161aa4109451750621f4d6558629f4c9293f129644101ca643`) and evaluates the same queries against both catalogues, isolating the effect of adding candidate songs. The original small release uses its own head and query draws.
 
 ```bash
-uv run python scripts/compare_catalogues.py data/medium/data/processed
+uv run --extra gpu python scripts/compare_catalogues.py data/medium/data/processed
 ```
 
 ## Clustering (`src/afp/cluster.py`, `src/afp/related.py`)
@@ -170,18 +171,20 @@ src/afp/    data.py (FMA download, 24 kHz decode, manifest, segments)   augment.
             cluster.py (k-means, Davies-Bouldin, IVF)   related.py (DBSCAN)
 hpc/        LSF jobs: setup_small (download FMA small + MuQ), run_small (cache/train/encode), run_voice (head v2),
             run_tiktok (held-out queries), run_encode (CPU encode of heads v1/v2), gpucheck (node check)
-scripts/    compare_catalogues.py       notebooks/  lsh_retrieval, gpu_retrieval       reports/  results and figures
+scripts/    lsh_retrieval, gpu_retrieval, experiment_appendix, compare_catalogues, check_*   (run as scripts)
+notebooks/  report_findings.ipynb (the one notebook; CPU, default environment)
+reports/    results, figures, report draft, evidence
 tests/      no data or model needed     data/{raw,processed}/  git-ignored contents
 ```
 
 ## Experiment appendix
 
-[Run the appendix notebook](notebooks/experiment_appendix.ipynb) or inspect the [source and measurement index](reports/appendix/SOURCES.md). It replays archived measurements on CPU from the files in this checkout. Start with the question you want to answer:
+Run `uv run python scripts/experiment_appendix.py` (about 1 s, CPU) or inspect the [source and measurement index](reports/appendix/SOURCES.md). It replays archived measurements from the files in this checkout. Start with the question you want to answer:
 
 | Question | What the test found |
 |---|---|
 | Can we recover a track missing from the first five LSH candidates? | On 22 previously missed clips, independent acoustic search recovered 13. Widening LSH to ten recovered one. At the 1% development target the acoustic path gained nine correct accepted answers, with one additional absent clip accepted and 2.6 ms higher median decoded-audio latency. |
-| When should the recogniser decline to name a song? | On Large, recalibrating the LSH policy reduced absent accepts from 23 to 8 per 1,024, and correct accepts from 691 to 337 per 1,024. The notebook shows both sides of each threshold decision. |
-| Do extra windows, a different projection or more cluster probes help? | Temporal voting gained two net identifications on 384 synthetic clips, with a paired interval spanning zero. The notebook also covers the Medium representation control, IVF tuning and agreement between the top two distinct songs. |
+| When should the recogniser decline to name a song? | On Large, recalibrating the LSH policy reduced absent accepts from 23 to 8 per 1,024, and correct accepts from 691 to 337 per 1,024. The script prints both sides of each threshold decision. |
+| Do extra windows, a different projection or more cluster probes help? | Temporal voting gained two net identifications on 384 synthetic clips, with a paired interval spanning zero. The script also covers the Medium representation control, IVF tuning and agreement between the top two distinct songs. |
 
-The notebook distinguishes threshold fitting on development songs, final held-out tests and retrospective analysis of known failures. Physical phone recordings are still an open test.
+The script distinguishes threshold fitting on development songs, final held-out tests and retrospective analysis of known failures. Physical phone recordings are still an open test.

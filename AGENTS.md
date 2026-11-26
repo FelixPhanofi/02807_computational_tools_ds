@@ -2,13 +2,13 @@
 
 # Commands
 
-* `uv` manages the environment: `uv add <pkg>` to install, `uv run <cmd>` for everything Python. `uv sync` (core), `--extra notebook` (Jupyter, matplotlib), `--extra gpu` (CuPy, CUDA 12). One lockfile covers all.
-* Tests: `uv run pytest tests/` (no data or model needed; GPU tests skip without CuPy). Lint/format: `uv run ruff check . --fix`, `uv run ruff format .` (or `uv run invoke fmt`). Tasks: `uv run invoke --list` (`test`, `data`, `fmt`; see `tasks.py`). Hooks: `uv run pre-commit run --all-files` (config: `.pre-commit-config.yaml`).
+* `uv` manages the environment: `uv add <pkg>` to install, `uv run <cmd>` for everything Python. Default `uv sync` is the light CPU environment (no torch); `--extra pipeline` (CUDA 11.8 torch, MuQ), `--extra gpu` (CuPy, CUDA 12), `--extra cuda` (both). One lockfile covers all.
+* Tests: `uv run pytest tests/` (no data or model needed; tests needing torch or CuPy skip without their extras). Lint/format: `uv run ruff check . --fix`, `uv run ruff format .` (or `uv run invoke fmt`). Tasks: `uv run invoke --list` (`test`, `data`, `fmt`; see `tasks.py`). Hooks: `uv run pre-commit run --all-files` (config: `.pre-commit-config.yaml`).
 * Do not run these unless asked (large downloads or long GPU jobs, all resumable):
-  * `uv run python -m afp.data --subset small|medium [--limit N]` (or `uv run invoke data`): downloads about 8 GB (`small`) or 22 GB (`medium`).
-  * `uv run python -m afp.fingerprint cache|train|encode` (see `README.md`): `cache` downloads MuQ weights (about 1.2 GB) and runs the model over every window (about 35,000 clean windows for `small`, plus pairs and queries).
+  * `uv run --extra pipeline python -m afp.data --subset small|medium [--limit N]` (or `uv run invoke data`): downloads about 8 GB (`small`) or 22 GB (`medium`).
+  * `uv run --extra pipeline python -m afp.fingerprint cache|train|encode` (see `README.md`): `cache` downloads MuQ weights (about 1.2 GB) and runs the model over every window (about 35,000 clean windows for `small`, plus pairs and queries).
 * Cheap CPU commands on existing fingerprints: `uv run python -m afp.cluster [--k ...] [--nprobe ...]` (k-means IVF evaluation), `uv run python -m afp.related [--min-similarity 0.9]` (DBSCAN, tracks sharing audio).
-* Notebooks and the medium rebuild are in `README.md` (LSH section).
+* The single notebook is `notebooks/report_findings.ipynb`; everything else is a script in `scripts/`. The medium rebuild is in `README.md` (LSH section).
 
 # Layout
 

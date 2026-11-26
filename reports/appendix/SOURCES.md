@@ -1,9 +1,9 @@
 # Measurement sources
 
-Open the [experiment appendix](../../notebooks/experiment_appendix.ipynb) and run all cells. With the project notebook dependencies installed, the equivalent repository-root command is
+Run the experiment appendix from the repository root in the default environment:
 
 ```sh
-uv run --extra notebook jupyter nbconvert --execute --to notebook --inplace notebooks/experiment_appendix.ipynb
+uv run python scripts/experiment_appendix.py
 ```
 
 The [file manifest](sources.csv) records the original repository path, full source commit and SHA-256 of every archived input. The notebook checks these hashes using Git-style LF line endings for text files. All input files are local. The links below document the original measurement procedures, including prerequisites for generating new fingerprints or GPU timings.

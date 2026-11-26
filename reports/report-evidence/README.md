@@ -1,6 +1,6 @@
 # Reproducing the report
 
-The [report notebook](../../notebooks/report_findings.ipynb) runs on CPU with NumPy, pandas and Matplotlib. From the repository root run `uv sync --extra notebook`, then open it with `uv run jupyter lab` and choose **Restart Kernel and Run All Cells**. It calculates the accuracy table from paired query predictions, creates [the figure](../figures/report-catalogues.pdf) and inspects the linked-track example. The small executable lookup uses one distorted query from each of 32 sampled held-out Medium tracks and their reference windows. The complete held-out evaluation uses 7,458 standard and 8,992 TikTok-like clips per method and catalogue.
+The [report notebook](../../notebooks/report_findings.ipynb) runs on CPU with NumPy, pandas and Matplotlib. From the repository root run `uv sync` (default environment), then open it with `uv run jupyter lab` and choose **Restart Kernel and Run All Cells**. It calculates the accuracy table from paired query predictions, creates [the figure](../figures/report-catalogues.pdf) and inspects the linked-track example. The small executable lookup uses one distorted query from each of 32 sampled held-out Medium tracks and their reference windows. The complete held-out evaluation uses 7,458 standard and 8,992 TikTok-like clips per method and catalogue.
 
 ## Full reruns
 

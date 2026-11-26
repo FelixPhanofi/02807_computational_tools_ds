@@ -1,3 +1,7 @@
+import pytest
+
+pytest.importorskip("torch")
+
 import io
 import tarfile
 import zipfile

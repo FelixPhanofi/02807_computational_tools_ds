@@ -33,12 +33,10 @@ from tqdm import tqdm
 
 from afp.augment import CATEGORIES, TEST_CATEGORIES, VOICE_CATEGORIES, random_augment
 from afp.data import SAMPLE_RATE, SEGMENT_S, SPEECH_FILES, load_processed, load_speech_bank, segment
+from afp.paths import EMBEDDINGS_DIR, FINGERPRINTS_DIR, QUERY_KINDS
 from afp.embed import EMBED_DIM, HIDDEN_DIM, MUQ_REPO, MuQBackbone, ProjectionHead, train_head
 from afp.retrieval import search
 
-EMBEDDINGS_DIR = "embeddings"
-FINGERPRINTS_DIR = "fingerprints"
-QUERY_KINDS = ("queries", "queries_tiktok")
 MIN_RMS = 1e-3
 UNKNOWN_THRESHOLDS = (0.5, 0.6, 0.7, 0.75, 0.8, 0.85, 0.9)
 
