@@ -4,7 +4,7 @@ DTU 02807 Computational Tools for Data Science, deadline 4 December 2026. Identi
 
 ## Report findings
 
-**Start here:** [short report (PDF)](reports/report-draft.pdf) · [runnable report notebook](notebooks/report_findings.ipynb) · [experiment inputs and full rerun commands](reports/report-evidence/README.md). Run the notebook top to bottom on CPU. It performs a real lookup on a small fingerprint sample and recomputes the full accuracy table from saved per-query predictions.
+**Start here:** [short report (PDF)](reports/report-draft.pdf) · [runnable report notebook](notebooks/report_findings.ipynb) · [experiment inputs and full rerun commands](reports/report-evidence/README.md). Run the notebook top to bottom on CPU (about a minute plus a one-time 160 MB download of the release files into the git-ignored `data/release/`, checksum-verified). It runs our own LSH, k-means index and DBSCAN (`afp.lsh`, `afp.cluster`, `afp.related`) on the released fingerprints, performs a real lookup on a small sample, and recomputes the full accuracy table from saved per-query predictions.
 
 On 8,992 held-out Medium TikTok-like queries, the trained 256-dimensional projection increased exact-search accuracy from **58.02% to 93.54%** relative to raw MuQ. Adding 80,735 reference tracks with that head and those queries fixed cost exhaustive search **316 correct answers**. The table shows the Large catalogue results from the original paired RTX 4090 run. Every accuracy count reproduced on the released fingerprints.
 
