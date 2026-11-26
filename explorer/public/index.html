@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f5ef" />
+    <meta
+      name="description"
+      content="Play ten seconds of music, find its title, and explore how a song search works."
+    />
+    <title>Signal Index · Name that song</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/fingerprint.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <a href="#listen" class="skip">Skip to the player</a>
+    <header>
+      <div class="shell top">
+        <a class="brand" href="#listen"
+          ><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Signal
+          Index</a
+        >
+        <nav aria-label="Explore the page">
+          <a href="#bench">Compare</a><a href="#search-story">How it works</a
+          ><a href="#queries">Explore tracks</a><a href="#coverage">Genres</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section id="listen" class="shell hero">
+        <div class="intro">
+          <h1>Name <br />that <em>song.</em></h1>
+          <p class="lead">
+            Play ten seconds of music and see if we can find its name. Use your microphone, upload a clip, or
+            try a song from our collection.
+          </p>
+          <div class="actions">
+            <button id="record" class="primary" disabled>Record 10 seconds</button
+            ><button id="upload" class="secondary" disabled>Upload a clip</button
+            ><input id="file" type="file" accept="audio/*,.wav,.mp3,.m4a,.ogg,.flac,.webm" hidden />
+          </div>
+          <p class="hint">Upload 10–30 seconds of audio, up to 8 MB. We listen to the first 10 seconds.</p>
+          <div id="status" role="status" aria-live="polite">
+            <i></i>
+            <div><strong id="status-title">Getting ready</strong><span id="status-detail"></span></div>
+          </div>
+          <a href="#search-story" id="follow-result" hidden>Explore this search ↓</a>
+          <canvas id="scope" aria-label="Recorded sound wave" hidden></canvas>
+        </div>
+        <div class="player" id="player">
+          <div class="player-top">
+            <span>Play a sample</span><span class="player-time" id="player-time">0:00 / 0:10</span>
+          </div>
+          <div class="turntable">
+            <div class="disc" aria-hidden="true">
+              <div class="paper-label"><div class="spindle"></div></div>
+            </div>
+            <button id="preview" class="disc-control" aria-label="Play sample" disabled>
+              <span id="play-icon" aria-hidden="true">▶</span>
+            </button>
+          </div>
+          <div class="player-bottom">
+            <div class="track-line">
+              <div>
+                <h2 id="sample-title">Picking a song…</h2>
+                <p id="sample-artist"></p>
+              </div>
+              <button
+                class="shuffle"
+                id="shuffle"
+                aria-label="Pick another random song"
+                title="Pick another random song"
+                disabled
+              >
+                ⤨
+              </button>
+            </div>
+            <div class="player-actions">
+              <button id="try-example" disabled>Find this song <span aria-hidden="true">↗</span></button
+              ><button id="list-toggle" aria-expanded="false" aria-controls="demo-tracks" disabled>
+                Choose a song <span aria-hidden="true">⌄</span>
+              </button>
+            </div>
+            <a href="#search-story" class="sample-follow">Explore this sample’s search ↓</a>
+            <p id="player-note" role="status"></p>
+            <button id="saved-sample" hidden>Play the saved sample</button>
+            <ul id="demo-tracks" aria-label="Choose a sample by title" hidden></ul>
+          </div>
+        </div>
+      </section>
+      <section class="story band" id="search-story">
+        <div class="shell">
+          <div class="secthead">
+            <div>
+              <h2>Follow a fingerprint.</h2>
+              <p>
+                Follow your clip into the music library. Hover over a song to meet it, then pick a piece to hear what the search heard.
+              </p>
+            </div>
+          </div>
+          <div id="ruler">Loading the song map…</div>
+        </div>
+      </section>
+      <section class="shell chapter" id="bench">
+        <div class="secthead">
+          <div>
+            <h2>Race the searches.</h2>
+            <p>
+              Three ways to look for the same song. Make the music harder to recognize, or give the search a
+              bigger library.
+            </p>
+          </div>
+        </div>
+        <div class="benchmark">
+          <div class="bench-settings">
+            <fieldset id="catalogue">
+              <legend>Library size</legend>
+              <button value="medium">25k songs</button
+              ><button value="large" aria-pressed="true">106k songs</button>
+            </fieldset>
+            <fieldset id="family">
+              <legend>What changed?</legend>
+              <button value="standard" aria-pressed="true">Everyday effects</button
+              ><button value="tiktok">Social video effects</button>
+            </fieldset>
+            <fieldset id="metric">
+              <legend>Compare by</legend>
+              <button value="accuracy" aria-pressed="true">Songs found</button
+              ><button value="ms">Time for one</button><button value="qps">Clips per second</button>
+            </fieldset>
+          </div>
+          <div class="bench-result">
+            <h3 id="chart-title">Songs found</h3>
+            <div id="chart" aria-live="polite"></div>
+            <p id="chart-note" class="note"></p>
+          </div>
+        </div>
+        <div class="training">
+          <div>
+            <h3>Can a search learn to listen?</h3>
+            <p>
+              We taught it to bring altered clips closer to their original song. Then we gave both versions
+              the same 8,992 clips with social video effects and searched the 25k-song library.
+            </p>
+          </div>
+          <div class="before-after">
+            <div>
+              <small>Before training</small><strong>58.0<span>%</span></strong>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+            <div>
+              <small>After training</small><strong>93.5<span>%</span></strong>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="explore band" id="queries">
+        <div class="shell">
+          <div class="secthead">
+            <div>
+              <h2>Explore the tracks.</h2>
+              <p>
+                Each dot is one of 2,048 test clips. We hid half of their songs from the search. Pick a dot to
+                see when it guessed right, stayed quiet, or named the wrong song.
+              </p>
+            </div>
+          </div>
+          <div class="explore-card">
+            <div class="plot-header">
+              <h3>Would you name this song?</h3>
+              <div class="legend">
+                <span><i class="present-dot"></i> Song in library</span
+                ><span><i class="absent-dot"></i> Song hidden</span>
+              </div>
+            </div>
+            <p class="plot-help">
+              Farther right means a closer match. Higher up means the best guess beat the next song by more.
+              Inside the shaded corner, the search gives a title.
+            </p>
+            <figure class="plot">
+              <span class="y-title">Lead over next song ↑</span
+              ><canvas
+                id="score-plot"
+                aria-label="Match strength and lead for the filtered clips. Choose any clip using the list below."
+              ></canvas
+              ><span class="x-title">Strength of best match →</span>
+              <div class="tooltip" id="plot-tip" hidden></div>
+            </figure>
+            <aside id="inspect" aria-live="polite"></aside>
+          </div>
+          <div class="collection">
+            <div class="controls">
+              <label
+                >Find a song<input id="search" type="search" placeholder="Title, artist or track ID" /></label
+              ><label
+                >Result<select id="outcome">
+                  <option value="">All results</option>
+                  <option>Right song</option>
+                  <option>Wrong song</option>
+                  <option>No guess</option>
+                </select></label
+              ><label
+                >Genre<select id="genre">
+                  <option value="">All genres</option>
+                </select></label
+              >
+            </div>
+            <div id="rows"></div>
+            <div class="pager">
+              <button id="prev" aria-label="Previous clips">←</button
+              ><span id="count" aria-live="polite"></span><button id="next" aria-label="Next clips">→</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="shell chapter" id="coverage">
+        <div class="secthead">
+          <div>
+            <h2>What’s in the library?</h2>
+            <p>
+              Rock and electronic music fill much of the 25k-song library. Pick a genre to see how often the
+              box search named its test clips correctly. These counts come from a separate test with two clips
+              per song.
+            </p>
+          </div>
+        </div>
+        <div class="genre-layout">
+          <div class="genre-chart">
+            <h3>Songs in each genre</h3>
+            <div id="genre-rows"></div>
+          </div>
+          <aside id="genre-detail" aria-live="polite"></aside>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="shell">
+        <div>
+          <strong>Signal Index</strong>
+          <p>DTU · Computational Tools for Data Science</p>
+        </div>
+        <div class="sources">
+          <a href="https://github.com/mdeff/fma">Music collection ↗</a
+          ><a href="https://github.com/nickiliak/02807_computational_tools_ds/pull/13"
+            >Search experiments ↗</a
+          ><a href="https://github.com/nickiliak/02807_computational_tools_ds/pull/14">Clip tests ↗</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

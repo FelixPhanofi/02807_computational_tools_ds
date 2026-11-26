@@ -1,0 +1,30 @@
+# Signal Index
+
+The Vercel app serves the interactive results and a self-contained 24-song spectral-landmark matcher. It keeps working while the training PC is offline. The local service uses the released 24,970-song Medium index, MuQ and the trained projection head on CUDA, four angular buckets per table, 64 tables and a distinct-track score gap. Bucket selection runs on the CPU and cosine reranking runs on CUDA. The race chart reports archived GPU timings.
+
+## Listening
+
+Capture ten seconds or select a browser-decodable 10–30 second clip up to 8 MiB. The browser downmixes and resamples its first ten seconds and sends 480,000 bytes of mono PCM16. Both APIs validate the content type and length. No audio is saved by the handlers. The player shuffles 24 CC0 titles. It retrieves only the selected MP3 from the official FMA Medium ZIP using an indexed HTTP byte range and verifies its size and SHA-256. The browser plays and submits the same ten-second crop. A bundled Jay Laurier clip also works when the upstream archive is unavailable.
+
+The hosted index uses 24 FMA Medium tracks labelled CC0 in the FMA metadata. Its extractor follows PR 9 (8 kHz spectral peaks); its CPU matcher votes for one temporal offset at original speed. Its heuristic cutoffs are 24 peaks, alignment score 0.32 and gap 0.12. With these settings fixed, digital crops beginning at sample 137,203 produced 24 correct accepts in 24 known songs and zero accepts in 48 other songs. These are clean digital controls. There are no labelled phone captures in this result. The [individual outcomes](hosted-check.json) and the catalogue builder expose the sampling and decision details.
+
+## Explore the evidence
+
+The search chart compares the exact, LSH and IVF runs in PR 13 for 7,458 standard and 8,992 TikTok-like clips per catalogue. Latency starts after fingerprint extraction. The browser inspector exposes the 2,048 held-out PR 6 decisions, including withheld source, distortion, predicted ID, runner-up, cosine and gap. The genre chart uses PR 2's separate test cohort. The player and search map share a selection. Choosing one of the 24 clips opens its saved local GPU replay. Recording, uploading, or pressing **Find this song** opens the new request’s own result. Neural results carry the fingerprint, four probed addresses on each of the 64 maps, exact best and runner-up rows, and the scored shortlist. Row scores are quantized to signed 16-bit for display; ranking and acceptance use the original floats. The peak-based backup instead reports its measured time offset.
+
+The D3 treemap groups every piece in the open box by genre and recording. Use the magnified ruler to open a box, hover for song and times, or pin a song to compare overlapping ten-second pieces. Picking a timeline piece opens its box on the current map. The directory covers all 24,970 indexed songs. Audio is fetched one original at a time from the official Medium ZIP, verified with the archive checksum, decoded in the browser and played from the selected position. Titles link to their recorded source and license. The embedded player covers 24,527 titles; the other 443 have source links. The check plot sums the 256 weighted contributions for the selected query, map and bit. Its running total can be inspected at any point.
+
+The training comparison uses the paired Medium raw/trained experiment in PR 13. The evidence builder checks both acceptance totals against their archived sources. Catalogue and query identities come from the released Medium manifest.
+
+## Run
+
+For Vercel, select the project's `explorer` root. It serves `public/` and the functions in `api/`. Configure the neural worker through server-side `SIGNAL_GPU_URL` (full HTTPS recognition URL) and `SIGNAL_GPU_TOKEN`. The proxy allows 205 seconds for a sleeping GPU to start and process the clip. If the worker is unavailable, the hosted 24-track landmark matcher handles the request.
+
+The Azure build packages the pinned MuQ weights, the Medium projection head, reference fingerprints and track metadata. From the repository root use `explorer/cloud/build-image.ps1 -Tag <registry>/<image>:<tag>` and push the image to the private registry. The [deployment script](cloud/deploy.ps1) uses an existing Container Apps environment, consumption T4 profile, registry pull identity and the current Azure CLI subscription. It stores the generated bearer key in the supplied Windows user-encrypted key file. HTTP requests wake the worker and the replica range is zero to one. T4 inference uses FP32 for the encoder.
+
+For local neural recognition use the repository GPU environment, the Medium release directory and head, and the pinned OpenMuQ checkpoint. Set `MUQ_MODEL_DIR` to the local model directory if it is outside the original cache location. Run `./explorer/start.ps1` and open http://127.0.0.1:8327. Stop with `./explorer/stop.ps1`. The web service uses loopback. No tunnel is required for a local test.
+
+Rebuild the public inputs from the repository root with `python explorer/tools/build_evidence.py` (requires the PR 13 and 14 commits), `python explorer/tools/build_landmarks.py` (requires FMA Medium audio and metadata), then `python explorer/tools/check_hosted.py`. Run `python explorer/tools/build_atlas.py` with the Medium manifest, metadata ZIP, processed audio and released fingerprints, then `python explorer/tools/build_sample_index.py` with the original Medium ZIP. With the local service running, `node explorer/tools/build_sample_replays.cjs` recreates all 24 examples through Chrome and the actual recognition endpoint. Set `PLAYWRIGHT_PATH` if Playwright is installed outside the checkout. The hosted dependencies are listed in requirements.txt. The builders also use the project's pandas environment.
+
+[FMA metadata and dataset](https://github.com/mdeff/fma) · [CC0](https://creativecommons.org/publicdomain/zero/1.0/) · [Report PR 13](https://github.com/nickiliak/02807_computational_tools_ds/pull/13) · [Appendix PR 14](https://github.com/nickiliak/02807_computational_tools_ds/pull/14)
+

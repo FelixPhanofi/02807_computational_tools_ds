@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "outputDirectory": "public",
+  "functions": {
+    "api/recognize.py": {"includeFiles": "{landmarks.npz,cpu_match.py}", "maxDuration": 230},
+    "api/sample.py": {"includeFiles": "{sample-index.json,sample_audio.py}", "maxDuration": 30}
+  }
+}
