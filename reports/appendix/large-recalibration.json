@@ -1,0 +1,985 @@
+{
+  "generated_utc": "2026-11-23T01:25:37Z",
+  "hardware": "NVIDIA GeForce RTX 4090",
+  "data": {
+    "reference_sha256": "128ec22bf1254a8219b9750f9c66f38d1de04e5f990ef1943f8711c4ec13eb3d",
+    "reference_tracks": 104681,
+    "reference_windows": 459911,
+    "query_archive_sha256": "b2fe0af28f7766148f852b8627d936d7049503ef56f081a5ca68b958a9fa218c",
+    "query_embeddings_sha256": "b2fe0af28f7766148f852b8627d936d7049503ef56f081a5ca68b958a9fa218c",
+    "projection_head_sha256": "4a5fb50d5dea344c0fdc803e9c825b6dfbd39b5dc86bafdce96c261e63801c6f",
+    "large_archive_sha1": "497109f4dd721066b5ce5e5f250ec604dc78939e",
+    "queries": 4096,
+    "songs": 2048,
+    "development_known_queries": 1024,
+    "development_unknown_queries": 1024,
+    "test_known_queries": 1024,
+    "test_unknown_queries": 1024,
+    "unknown_tracks_removed": 1024,
+    "query_cohort_sha256": "f496958ec983ad996bd91e702f524b987f38d5af26a2ec6df408bb89cea37fb2",
+    "no_development_test_track_overlap": true
+  },
+  "calibration": {
+    "target_unknown_false_accept_rate": 0.01,
+    "false_accept_budget": 10,
+    "unknown_development_queries": 1024,
+    "lsh_settings": {
+      "bits": 10,
+      "tables": 64,
+      "probes": 3,
+      "seed": 2807
+    },
+    "lsh_top_one_score_match_with_bucket_union": 4096
+  },
+  "frozen_thresholds": {
+    "score_only": {
+      "score_threshold": 0.834209919,
+      "gap_threshold": null
+    },
+    "score_and_gap": {
+      "score_threshold": 0.749896646,
+      "gap_threshold": 0.11748421200000002
+    }
+  },
+  "methods": {
+    "exact": {
+      "calibration": {
+        "frozen": {
+          "score_only": {
+            "score_threshold": 0.834209919,
+            "gap_threshold": null,
+            "development_known_correct": null,
+            "development_unknown_false_accepts": null,
+            "known_correct_accepted": 545,
+            "known_accepted_incorrectly": 11,
+            "known_queries": 1024,
+            "unknown_false_accepts": 21,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 372,
+                "known_queries": 512,
+                "unknown_false_accepts": 13,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 173,
+                "known_queries": 512,
+                "unknown_false_accepts": 8,
+                "unknown_queries": 512
+              }
+            }
+          },
+          "score_and_gap": {
+            "score_threshold": 0.749896646,
+            "gap_threshold": 0.11748421200000002,
+            "development_known_correct": null,
+            "development_unknown_false_accepts": null,
+            "known_correct_accepted": 712,
+            "known_accepted_incorrectly": 1,
+            "known_queries": 1024,
+            "unknown_false_accepts": 27,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 429,
+                "known_queries": 512,
+                "unknown_false_accepts": 16,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 283,
+                "known_queries": 512,
+                "unknown_false_accepts": 11,
+                "unknown_queries": 512
+              }
+            }
+          }
+        },
+        "large_development_recalibrated": {
+          "score_only": {
+            "score_threshold": 0.8863164782524109,
+            "gap_threshold": null,
+            "development_known_correct": 344,
+            "development_unknown_false_accepts": 10,
+            "known_correct_accepted": 344,
+            "unknown_false_accepts": 10,
+            "known_queries": 1024,
+            "unknown_queries": 1024
+          },
+          "score_and_gap": {
+            "score_threshold": 0.8863164782524109,
+            "gap_threshold": null,
+            "development_known_correct": 344,
+            "development_unknown_false_accepts": 10,
+            "known_correct_accepted": 344,
+            "unknown_false_accepts": 10,
+            "known_queries": 1024,
+            "unknown_queries": 1024
+          }
+        }
+      },
+      "test": {
+        "frozen": {
+          "score_only": {
+            "score_threshold": 0.834209919,
+            "gap_threshold": null,
+            "development_known_correct": null,
+            "development_unknown_false_accepts": null,
+            "known_correct_accepted": 523,
+            "known_accepted_incorrectly": 18,
+            "known_queries": 1024,
+            "unknown_false_accepts": 18,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 361,
+                "known_queries": 512,
+                "unknown_false_accepts": 14,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 162,
+                "known_queries": 512,
+                "unknown_false_accepts": 4,
+                "unknown_queries": 512
+              }
+            },
+            "known_correct_acceptance_rate": 0.5107421875,
+            "unknown_false_acceptance_rate": 0.017578125,
+            "track_bootstrap_95": {
+              "known_correct_acceptance_rate": [
+                0.4814453125,
+                0.5390625
+              ],
+              "unknown_false_acceptance_rate": [
+                0.0087890625,
+                0.0283203125
+              ]
+            },
+            "bootstrap_midpoint_error": {
+              "known_correct_acceptance_rate": 0.00048828125,
+              "unknown_false_acceptance_rate": 0.0009765625
+            }
+          },
+          "score_and_gap": {
+            "score_threshold": 0.749896646,
+            "gap_threshold": 0.11748421200000002,
+            "development_known_correct": null,
+            "development_unknown_false_accepts": null,
+            "known_correct_accepted": 691,
+            "known_accepted_incorrectly": 0,
+            "known_queries": 1024,
+            "unknown_false_accepts": 23,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 430,
+                "known_queries": 512,
+                "unknown_false_accepts": 16,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 261,
+                "known_queries": 512,
+                "unknown_false_accepts": 7,
+                "unknown_queries": 512
+              }
+            },
+            "known_correct_acceptance_rate": 0.6748046875,
+            "unknown_false_acceptance_rate": 0.0224609375,
+            "track_bootstrap_95": {
+              "known_correct_acceptance_rate": [
+                0.6455078125,
+                0.7041015625
+              ],
+              "unknown_false_acceptance_rate": [
+                0.01171875,
+                0.0341796875
+              ]
+            },
+            "bootstrap_midpoint_error": {
+              "known_correct_acceptance_rate": 0.0,
+              "unknown_false_acceptance_rate": 0.00048828125
+            }
+          }
+        },
+        "large_development_recalibrated": {
+          "score_only": {
+            "score_threshold": 0.8863164782524109,
+            "gap_threshold": null,
+            "development_known_correct": 344,
+            "development_unknown_false_accepts": 10,
+            "known_correct_accepted": 336,
+            "known_accepted_incorrectly": 10,
+            "known_queries": 1024,
+            "unknown_false_accepts": 8,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 250,
+                "known_queries": 512,
+                "unknown_false_accepts": 5,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 86,
+                "known_queries": 512,
+                "unknown_false_accepts": 3,
+                "unknown_queries": 512
+              }
+            },
+            "known_correct_acceptance_rate": 0.328125,
+            "unknown_false_acceptance_rate": 0.0078125,
+            "track_bootstrap_95": {
+              "known_correct_acceptance_rate": [
+                0.30078125,
+                0.35546875
+              ],
+              "unknown_false_acceptance_rate": [
+                0.0029296875,
+                0.013671875
+              ]
+            },
+            "bootstrap_midpoint_error": {
+              "known_correct_acceptance_rate": 0.0,
+              "unknown_false_acceptance_rate": 0.00048828125
+            }
+          },
+          "score_and_gap": {
+            "score_threshold": 0.8863164782524109,
+            "gap_threshold": null,
+            "development_known_correct": 344,
+            "development_unknown_false_accepts": 10,
+            "known_correct_accepted": 336,
+            "known_accepted_incorrectly": 10,
+            "known_queries": 1024,
+            "unknown_false_accepts": 8,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 250,
+                "known_queries": 512,
+                "unknown_false_accepts": 5,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 86,
+                "known_queries": 512,
+                "unknown_false_accepts": 3,
+                "unknown_queries": 512
+              }
+            },
+            "known_correct_acceptance_rate": 0.328125,
+            "unknown_false_acceptance_rate": 0.0078125,
+            "track_bootstrap_95": {
+              "known_correct_acceptance_rate": [
+                0.30078125,
+                0.35546875
+              ],
+              "unknown_false_acceptance_rate": [
+                0.0029296875,
+                0.013671875
+              ]
+            },
+            "bootstrap_midpoint_error": {
+              "known_correct_acceptance_rate": 0.0,
+              "unknown_false_acceptance_rate": 0.00048828125
+            }
+          }
+        }
+      },
+      "comparison": {
+        "score_only": {
+          "frozen": {
+            "score_threshold": 0.834209919,
+            "gap_threshold": null,
+            "development_known_correct": null,
+            "development_unknown_false_accepts": null,
+            "known_correct_accepted": 523,
+            "known_accepted_incorrectly": 18,
+            "known_queries": 1024,
+            "unknown_false_accepts": 18,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 361,
+                "known_queries": 512,
+                "unknown_false_accepts": 14,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 162,
+                "known_queries": 512,
+                "unknown_false_accepts": 4,
+                "unknown_queries": 512
+              }
+            },
+            "known_correct_acceptance_rate": 0.5107421875,
+            "unknown_false_acceptance_rate": 0.017578125,
+            "track_bootstrap_95": {
+              "known_correct_acceptance_rate": [
+                0.4814453125,
+                0.5390625
+              ],
+              "unknown_false_acceptance_rate": [
+                0.0087890625,
+                0.0283203125
+              ]
+            },
+            "bootstrap_midpoint_error": {
+              "known_correct_acceptance_rate": 0.00048828125,
+              "unknown_false_acceptance_rate": 0.0009765625
+            }
+          },
+          "large_recalibrated": {
+            "score_threshold": 0.8863164782524109,
+            "gap_threshold": null,
+            "development_known_correct": 344,
+            "development_unknown_false_accepts": 10,
+            "known_correct_accepted": 336,
+            "known_accepted_incorrectly": 10,
+            "known_queries": 1024,
+            "unknown_false_accepts": 8,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 250,
+                "known_queries": 512,
+                "unknown_false_accepts": 5,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 86,
+                "known_queries": 512,
+                "unknown_false_accepts": 3,
+                "unknown_queries": 512
+              }
+            },
+            "known_correct_acceptance_rate": 0.328125,
+            "unknown_false_acceptance_rate": 0.0078125,
+            "track_bootstrap_95": {
+              "known_correct_acceptance_rate": [
+                0.30078125,
+                0.35546875
+              ],
+              "unknown_false_acceptance_rate": [
+                0.0029296875,
+                0.013671875
+              ]
+            },
+            "bootstrap_midpoint_error": {
+              "known_correct_acceptance_rate": 0.0,
+              "unknown_false_acceptance_rate": 0.00048828125
+            }
+          },
+          "known_correct_retained": 336,
+          "known_correct_lost": 187,
+          "known_correct_gained": 0,
+          "known_correct_net_change": -187,
+          "paired_known_correct_change_percentage_points": -18.26171875,
+          "paired_known_correct_track_bootstrap_95_percentage_points": [
+            -20.60546875,
+            -16.015625
+          ],
+          "unknown_false_accept_change": -10,
+          "by_family": {
+            "standard": {
+              "frozen_known_correct": 361,
+              "recalibrated_known_correct": 250,
+              "frozen_unknown_false_accepts": 14,
+              "recalibrated_unknown_false_accepts": 5
+            },
+            "tiktok": {
+              "frozen_known_correct": 162,
+              "recalibrated_known_correct": 86,
+              "frozen_unknown_false_accepts": 4,
+              "recalibrated_unknown_false_accepts": 3
+            }
+          }
+        },
+        "score_and_gap": {
+          "frozen": {
+            "score_threshold": 0.749896646,
+            "gap_threshold": 0.11748421200000002,
+            "development_known_correct": null,
+            "development_unknown_false_accepts": null,
+            "known_correct_accepted": 691,
+            "known_accepted_incorrectly": 0,
+            "known_queries": 1024,
+            "unknown_false_accepts": 23,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 430,
+                "known_queries": 512,
+                "unknown_false_accepts": 16,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 261,
+                "known_queries": 512,
+                "unknown_false_accepts": 7,
+                "unknown_queries": 512
+              }
+            },
+            "known_correct_acceptance_rate": 0.6748046875,
+            "unknown_false_acceptance_rate": 0.0224609375,
+            "track_bootstrap_95": {
+              "known_correct_acceptance_rate": [
+                0.6455078125,
+                0.7041015625
+              ],
+              "unknown_false_acceptance_rate": [
+                0.01171875,
+                0.0341796875
+              ]
+            },
+            "bootstrap_midpoint_error": {
+              "known_correct_acceptance_rate": 0.0,
+              "unknown_false_acceptance_rate": 0.00048828125
+            }
+          },
+          "large_recalibrated": {
+            "score_threshold": 0.8863164782524109,
+            "gap_threshold": null,
+            "development_known_correct": 344,
+            "development_unknown_false_accepts": 10,
+            "known_correct_accepted": 336,
+            "known_accepted_incorrectly": 10,
+            "known_queries": 1024,
+            "unknown_false_accepts": 8,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 250,
+                "known_queries": 512,
+                "unknown_false_accepts": 5,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 86,
+                "known_queries": 512,
+                "unknown_false_accepts": 3,
+                "unknown_queries": 512
+              }
+            },
+            "known_correct_acceptance_rate": 0.328125,
+            "unknown_false_acceptance_rate": 0.0078125,
+            "track_bootstrap_95": {
+              "known_correct_acceptance_rate": [
+                0.30078125,
+                0.35546875
+              ],
+              "unknown_false_acceptance_rate": [
+                0.0029296875,
+                0.013671875
+              ]
+            },
+            "bootstrap_midpoint_error": {
+              "known_correct_acceptance_rate": 0.0,
+              "unknown_false_acceptance_rate": 0.00048828125
+            }
+          },
+          "known_correct_retained": 328,
+          "known_correct_lost": 363,
+          "known_correct_gained": 8,
+          "known_correct_net_change": -355,
+          "paired_known_correct_change_percentage_points": -34.66796875,
+          "paired_known_correct_track_bootstrap_95_percentage_points": [
+            -37.79296875,
+            -31.640625
+          ],
+          "unknown_false_accept_change": -15,
+          "by_family": {
+            "standard": {
+              "frozen_known_correct": 430,
+              "recalibrated_known_correct": 250,
+              "frozen_unknown_false_accepts": 16,
+              "recalibrated_unknown_false_accepts": 5
+            },
+            "tiktok": {
+              "frozen_known_correct": 261,
+              "recalibrated_known_correct": 86,
+              "frozen_unknown_false_accepts": 7,
+              "recalibrated_unknown_false_accepts": 3
+            }
+          }
+        }
+      }
+    },
+    "lsh": {
+      "calibration": {
+        "frozen": {
+          "score_only": {
+            "score_threshold": 0.834209919,
+            "gap_threshold": null,
+            "development_known_correct": null,
+            "development_unknown_false_accepts": null,
+            "known_correct_accepted": 544,
+            "known_accepted_incorrectly": 12,
+            "known_queries": 1024,
+            "unknown_false_accepts": 21,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 372,
+                "known_queries": 512,
+                "unknown_false_accepts": 13,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 172,
+                "known_queries": 512,
+                "unknown_false_accepts": 8,
+                "unknown_queries": 512
+              }
+            }
+          },
+          "score_and_gap": {
+            "score_threshold": 0.749896646,
+            "gap_threshold": 0.11748421200000002,
+            "development_known_correct": null,
+            "development_unknown_false_accepts": null,
+            "known_correct_accepted": 712,
+            "known_accepted_incorrectly": 1,
+            "known_queries": 1024,
+            "unknown_false_accepts": 27,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 429,
+                "known_queries": 512,
+                "unknown_false_accepts": 16,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 283,
+                "known_queries": 512,
+                "unknown_false_accepts": 11,
+                "unknown_queries": 512
+              }
+            }
+          }
+        },
+        "large_development_recalibrated": {
+          "score_only": {
+            "score_threshold": 0.8863164186477661,
+            "gap_threshold": null,
+            "development_known_correct": 343,
+            "development_unknown_false_accepts": 10,
+            "known_correct_accepted": 343,
+            "unknown_false_accepts": 10,
+            "known_queries": 1024,
+            "unknown_queries": 1024
+          },
+          "score_and_gap": {
+            "score_threshold": 0.8863164186477661,
+            "gap_threshold": null,
+            "development_known_correct": 343,
+            "development_unknown_false_accepts": 10,
+            "known_correct_accepted": 343,
+            "unknown_false_accepts": 10,
+            "known_queries": 1024,
+            "unknown_queries": 1024
+          }
+        }
+      },
+      "test": {
+        "frozen": {
+          "score_only": {
+            "score_threshold": 0.834209919,
+            "gap_threshold": null,
+            "development_known_correct": null,
+            "development_unknown_false_accepts": null,
+            "known_correct_accepted": 526,
+            "known_accepted_incorrectly": 15,
+            "known_queries": 1024,
+            "unknown_false_accepts": 18,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 363,
+                "known_queries": 512,
+                "unknown_false_accepts": 14,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 163,
+                "known_queries": 512,
+                "unknown_false_accepts": 4,
+                "unknown_queries": 512
+              }
+            },
+            "known_correct_acceptance_rate": 0.513671875,
+            "unknown_false_acceptance_rate": 0.017578125,
+            "track_bootstrap_95": {
+              "known_correct_acceptance_rate": [
+                0.4853515625,
+                0.54296875
+              ],
+              "unknown_false_acceptance_rate": [
+                0.0087890625,
+                0.0283203125
+              ]
+            },
+            "bootstrap_midpoint_error": {
+              "known_correct_acceptance_rate": 0.00048828125,
+              "unknown_false_acceptance_rate": 0.0009765625
+            }
+          },
+          "score_and_gap": {
+            "score_threshold": 0.749896646,
+            "gap_threshold": 0.11748421200000002,
+            "development_known_correct": null,
+            "development_unknown_false_accepts": null,
+            "known_correct_accepted": 691,
+            "known_accepted_incorrectly": 0,
+            "known_queries": 1024,
+            "unknown_false_accepts": 23,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 430,
+                "known_queries": 512,
+                "unknown_false_accepts": 16,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 261,
+                "known_queries": 512,
+                "unknown_false_accepts": 7,
+                "unknown_queries": 512
+              }
+            },
+            "known_correct_acceptance_rate": 0.6748046875,
+            "unknown_false_acceptance_rate": 0.0224609375,
+            "track_bootstrap_95": {
+              "known_correct_acceptance_rate": [
+                0.6455078125,
+                0.7041015625
+              ],
+              "unknown_false_acceptance_rate": [
+                0.01171875,
+                0.0341796875
+              ]
+            },
+            "bootstrap_midpoint_error": {
+              "known_correct_acceptance_rate": 0.0,
+              "unknown_false_acceptance_rate": 0.00048828125
+            }
+          }
+        },
+        "large_development_recalibrated": {
+          "score_only": {
+            "score_threshold": 0.8863164186477661,
+            "gap_threshold": null,
+            "development_known_correct": 343,
+            "development_unknown_false_accepts": 10,
+            "known_correct_accepted": 337,
+            "known_accepted_incorrectly": 9,
+            "known_queries": 1024,
+            "unknown_false_accepts": 8,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 251,
+                "known_queries": 512,
+                "unknown_false_accepts": 5,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 86,
+                "known_queries": 512,
+                "unknown_false_accepts": 3,
+                "unknown_queries": 512
+              }
+            },
+            "known_correct_acceptance_rate": 0.3291015625,
+            "unknown_false_acceptance_rate": 0.0078125,
+            "track_bootstrap_95": {
+              "known_correct_acceptance_rate": [
+                0.3017578125,
+                0.3564453125
+              ],
+              "unknown_false_acceptance_rate": [
+                0.0029296875,
+                0.013671875
+              ]
+            },
+            "bootstrap_midpoint_error": {
+              "known_correct_acceptance_rate": 0.0,
+              "unknown_false_acceptance_rate": 0.00048828125
+            }
+          },
+          "score_and_gap": {
+            "score_threshold": 0.8863164186477661,
+            "gap_threshold": null,
+            "development_known_correct": 343,
+            "development_unknown_false_accepts": 10,
+            "known_correct_accepted": 337,
+            "known_accepted_incorrectly": 9,
+            "known_queries": 1024,
+            "unknown_false_accepts": 8,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 251,
+                "known_queries": 512,
+                "unknown_false_accepts": 5,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 86,
+                "known_queries": 512,
+                "unknown_false_accepts": 3,
+                "unknown_queries": 512
+              }
+            },
+            "known_correct_acceptance_rate": 0.3291015625,
+            "unknown_false_acceptance_rate": 0.0078125,
+            "track_bootstrap_95": {
+              "known_correct_acceptance_rate": [
+                0.3017578125,
+                0.3564453125
+              ],
+              "unknown_false_acceptance_rate": [
+                0.0029296875,
+                0.013671875
+              ]
+            },
+            "bootstrap_midpoint_error": {
+              "known_correct_acceptance_rate": 0.0,
+              "unknown_false_acceptance_rate": 0.00048828125
+            }
+          }
+        }
+      },
+      "comparison": {
+        "score_only": {
+          "frozen": {
+            "score_threshold": 0.834209919,
+            "gap_threshold": null,
+            "development_known_correct": null,
+            "development_unknown_false_accepts": null,
+            "known_correct_accepted": 526,
+            "known_accepted_incorrectly": 15,
+            "known_queries": 1024,
+            "unknown_false_accepts": 18,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 363,
+                "known_queries": 512,
+                "unknown_false_accepts": 14,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 163,
+                "known_queries": 512,
+                "unknown_false_accepts": 4,
+                "unknown_queries": 512
+              }
+            },
+            "known_correct_acceptance_rate": 0.513671875,
+            "unknown_false_acceptance_rate": 0.017578125,
+            "track_bootstrap_95": {
+              "known_correct_acceptance_rate": [
+                0.4853515625,
+                0.54296875
+              ],
+              "unknown_false_acceptance_rate": [
+                0.0087890625,
+                0.0283203125
+              ]
+            },
+            "bootstrap_midpoint_error": {
+              "known_correct_acceptance_rate": 0.00048828125,
+              "unknown_false_acceptance_rate": 0.0009765625
+            }
+          },
+          "large_recalibrated": {
+            "score_threshold": 0.8863164186477661,
+            "gap_threshold": null,
+            "development_known_correct": 343,
+            "development_unknown_false_accepts": 10,
+            "known_correct_accepted": 337,
+            "known_accepted_incorrectly": 9,
+            "known_queries": 1024,
+            "unknown_false_accepts": 8,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 251,
+                "known_queries": 512,
+                "unknown_false_accepts": 5,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 86,
+                "known_queries": 512,
+                "unknown_false_accepts": 3,
+                "unknown_queries": 512
+              }
+            },
+            "known_correct_acceptance_rate": 0.3291015625,
+            "unknown_false_acceptance_rate": 0.0078125,
+            "track_bootstrap_95": {
+              "known_correct_acceptance_rate": [
+                0.3017578125,
+                0.3564453125
+              ],
+              "unknown_false_acceptance_rate": [
+                0.0029296875,
+                0.013671875
+              ]
+            },
+            "bootstrap_midpoint_error": {
+              "known_correct_acceptance_rate": 0.0,
+              "unknown_false_acceptance_rate": 0.00048828125
+            }
+          },
+          "known_correct_retained": 337,
+          "known_correct_lost": 189,
+          "known_correct_gained": 0,
+          "known_correct_net_change": -189,
+          "paired_known_correct_change_percentage_points": -18.45703125,
+          "paired_known_correct_track_bootstrap_95_percentage_points": [
+            -20.80078125,
+            -16.11328125
+          ],
+          "unknown_false_accept_change": -10,
+          "by_family": {
+            "standard": {
+              "frozen_known_correct": 363,
+              "recalibrated_known_correct": 251,
+              "frozen_unknown_false_accepts": 14,
+              "recalibrated_unknown_false_accepts": 5
+            },
+            "tiktok": {
+              "frozen_known_correct": 163,
+              "recalibrated_known_correct": 86,
+              "frozen_unknown_false_accepts": 4,
+              "recalibrated_unknown_false_accepts": 3
+            }
+          }
+        },
+        "score_and_gap": {
+          "frozen": {
+            "score_threshold": 0.749896646,
+            "gap_threshold": 0.11748421200000002,
+            "development_known_correct": null,
+            "development_unknown_false_accepts": null,
+            "known_correct_accepted": 691,
+            "known_accepted_incorrectly": 0,
+            "known_queries": 1024,
+            "unknown_false_accepts": 23,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 430,
+                "known_queries": 512,
+                "unknown_false_accepts": 16,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 261,
+                "known_queries": 512,
+                "unknown_false_accepts": 7,
+                "unknown_queries": 512
+              }
+            },
+            "known_correct_acceptance_rate": 0.6748046875,
+            "unknown_false_acceptance_rate": 0.0224609375,
+            "track_bootstrap_95": {
+              "known_correct_acceptance_rate": [
+                0.6455078125,
+                0.7041015625
+              ],
+              "unknown_false_acceptance_rate": [
+                0.01171875,
+                0.0341796875
+              ]
+            },
+            "bootstrap_midpoint_error": {
+              "known_correct_acceptance_rate": 0.0,
+              "unknown_false_acceptance_rate": 0.00048828125
+            }
+          },
+          "large_recalibrated": {
+            "score_threshold": 0.8863164186477661,
+            "gap_threshold": null,
+            "development_known_correct": 343,
+            "development_unknown_false_accepts": 10,
+            "known_correct_accepted": 337,
+            "known_accepted_incorrectly": 9,
+            "known_queries": 1024,
+            "unknown_false_accepts": 8,
+            "unknown_queries": 1024,
+            "by_family": {
+              "standard": {
+                "known_correct_accepted": 251,
+                "known_queries": 512,
+                "unknown_false_accepts": 5,
+                "unknown_queries": 512
+              },
+              "tiktok": {
+                "known_correct_accepted": 86,
+                "known_queries": 512,
+                "unknown_false_accepts": 3,
+                "unknown_queries": 512
+              }
+            },
+            "known_correct_acceptance_rate": 0.3291015625,
+            "unknown_false_acceptance_rate": 0.0078125,
+            "track_bootstrap_95": {
+              "known_correct_acceptance_rate": [
+                0.3017578125,
+                0.3564453125
+              ],
+              "unknown_false_acceptance_rate": [
+                0.0029296875,
+                0.013671875
+              ]
+            },
+            "bootstrap_midpoint_error": {
+              "known_correct_acceptance_rate": 0.0,
+              "unknown_false_acceptance_rate": 0.00048828125
+            }
+          },
+          "known_correct_retained": 328,
+          "known_correct_lost": 363,
+          "known_correct_gained": 9,
+          "known_correct_net_change": -354,
+          "paired_known_correct_change_percentage_points": -34.5703125,
+          "paired_known_correct_track_bootstrap_95_percentage_points": [
+            -37.6953125,
+            -31.54296875
+          ],
+          "unknown_false_accept_change": -15,
+          "by_family": {
+            "standard": {
+              "frozen_known_correct": 430,
+              "recalibrated_known_correct": 251,
+              "frozen_unknown_false_accepts": 16,
+              "recalibrated_unknown_false_accepts": 5
+            },
+            "tiktok": {
+              "frozen_known_correct": 261,
+              "recalibrated_known_correct": 86,
+              "frozen_unknown_false_accepts": 7,
+              "recalibrated_unknown_false_accepts": 3
+            }
+          }
+        }
+      }
+    }
+  },
+  "timing_seconds": 4.791,
+  "limitations": [
+    "Threshold calibration reuses the original PR6 synthetic query cohort and split.",
+    "The held-out test sample has 1,024 unknown clips, so 1% corresponds to about ten false accepts and remains a noisy empirical estimate.",
+    "LSH runner-up scores come only from the union of its base and three multi-probe buckets in each table.",
+    "No real phone recordings or out-of-distribution distortion families are included."
+  ]
+}

@@ -173,3 +173,15 @@ hpc/        LSF jobs: setup_small (download FMA small + MuQ), run_small (cache/t
 scripts/    compare_catalogues.py       notebooks/  lsh_retrieval, gpu_retrieval       reports/  results and figures
 tests/      no data or model needed     data/{raw,processed}/  git-ignored contents
 ```
+
+## Experiment appendix
+
+[Run the appendix notebook](notebooks/experiment_appendix.ipynb) or inspect the [source and measurement index](reports/appendix/SOURCES.md). It replays archived measurements on CPU from the files in this checkout. Start with the question you want to answer:
+
+| Question | What the test found |
+|---|---|
+| Can we recover a track missing from the first five LSH candidates? | On 22 previously missed clips, independent acoustic search recovered 13. Widening LSH to ten recovered one. At the 1% development target the acoustic path gained nine correct accepted answers, with one additional absent clip accepted and 2.6 ms higher median decoded-audio latency. |
+| When should the recogniser decline to name a song? | On Large, recalibrating the LSH policy reduced absent accepts from 23 to 8 per 1,024, and correct accepts from 691 to 337 per 1,024. The notebook shows both sides of each threshold decision. |
+| Do extra windows, a different projection or more cluster probes help? | Temporal voting gained two net identifications on 384 synthetic clips, with a paired interval spanning zero. The notebook also covers the Medium representation control, IVF tuning and agreement between the top two distinct songs. |
+
+The notebook distinguishes threshold fitting on development songs, final held-out tests and retrospective analysis of known failures. Physical phone recordings are still an open test.

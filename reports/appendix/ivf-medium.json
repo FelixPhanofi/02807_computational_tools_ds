@@ -1,0 +1,593 @@
+{
+  "generated_utc": "2026-11-22T22:59:33.954495+00:00",
+  "source_directory": "data/medium/data/processed/fingerprints",
+  "input_files": {
+    "references.npz": {
+      "bytes": 114513414,
+      "sha256": "174234b82db42e42839b26b7d52372b908075d5724451037b26e4a865d33a9b9"
+    },
+    "queries.npz": {
+      "bytes": 11321276,
+      "sha256": "6f28cceb02e25bf10aecf7d33e2965d151cdc258d8b36275d16b6a8a751c3a85"
+    },
+    "queries_tiktok.npz": {
+      "bytes": 11601276,
+      "sha256": "67e96f77130d2c8ab9e40d3f5a989e94e200b7244e8550394a6cd0f29108074d"
+    }
+  },
+  "gpu": {
+    "device": "NVIDIA GeForce RTX 4090",
+    "compute_capability": "89",
+    "cupy": "14.2.0",
+    "device_id": 0
+  },
+  "dataset": {
+    "reference_windows": 110320,
+    "reference_tracks": 24970,
+    "development_queries": 2542,
+    "development_tracks": 1961,
+    "heldout_queries": 16450,
+    "heldout_by_set": {
+      "Standard": 7458,
+      "TikTok-like": 8992
+    },
+    "vector_dimension": 256
+  },
+  "protocol": {
+    "development_track_seed": 2211,
+    "index_seed": 2807,
+    "development_accuracy_tolerance": 0.005,
+    "selection_rule": "fastest within 0.5 percentage points of exact development accuracy",
+    "heldout_tracks_exclude_development_tracks": true,
+    "query_search_excludes_upload_and_index_build": true,
+    "frozen_lsh": {
+      "bits": 10,
+      "tables": 64,
+      "probes": 3
+    },
+    "kmeans_initialization": "seeded reference-vector sample",
+    "kmeans_max_iterations": 20
+  },
+  "baselines": {
+    "development_exact_accuracy": 0.9775767112509834,
+    "development_lsh_accuracy": 0.9775767112509834,
+    "lsh_build_seconds": 0.03228889999445528,
+    "heldout_closed": [
+      {
+        "query_set": "Standard",
+        "method": "Exact",
+        "queries": 7458,
+        "track_accuracy": 0.9808259587
+      },
+      {
+        "query_set": "Standard",
+        "method": "Frozen LSH",
+        "queries": 7458,
+        "track_accuracy": 0.9808259587
+      },
+      {
+        "query_set": "Standard",
+        "method": "IVF",
+        "queries": 7458,
+        "track_accuracy": 0.9753285063
+      },
+      {
+        "query_set": "TikTok-like",
+        "method": "Exact",
+        "queries": 8992,
+        "track_accuracy": 0.9353870107
+      },
+      {
+        "query_set": "TikTok-like",
+        "method": "Frozen LSH",
+        "queries": 8992,
+        "track_accuracy": 0.9353870107
+      },
+      {
+        "query_set": "TikTok-like",
+        "method": "IVF",
+        "queries": 8992,
+        "track_accuracy": 0.9277135231
+      }
+    ]
+  },
+  "development_sweep": [
+    {
+      "clusters": 64,
+      "probes": 1,
+      "dev_accuracy": 0.8280881196,
+      "dev_exact_agreement": 0.8414634146,
+      "mean_window_visits": 1773.6813532651,
+      "visit_fraction": 0.0160776047,
+      "build_seconds": 0.0452071,
+      "training_iterations": 20,
+      "index_bytes": 507076,
+      "fit_allocated_delta_bytes": 507392,
+      "dev_exact_median_ms": 0.19835,
+      "dev_ivf_median_ms": 0.12455,
+      "dev_ivf_p95_ms": 0.14515,
+      "dev_timing_queries": 64
+    },
+    {
+      "clusters": 64,
+      "probes": 4,
+      "dev_accuracy": 0.9634146341,
+      "dev_exact_agreement": 0.9842643588,
+      "mean_window_visits": 6974.6058221873,
+      "visit_fraction": 0.0632215901,
+      "build_seconds": 0.0452071,
+      "training_iterations": 20,
+      "index_bytes": 507076,
+      "fit_allocated_delta_bytes": 507392,
+      "dev_exact_median_ms": 0.19435,
+      "dev_ivf_median_ms": 0.1332,
+      "dev_ivf_p95_ms": 0.158985,
+      "dev_timing_queries": 64
+    },
+    {
+      "clusters": 64,
+      "probes": 16,
+      "dev_accuracy": 0.9771833202,
+      "dev_exact_agreement": 0.9992132179,
+      "mean_window_visits": 27472.2297403619,
+      "visit_fraction": 0.2490231122,
+      "build_seconds": 0.0452071,
+      "training_iterations": 20,
+      "index_bytes": 507076,
+      "fit_allocated_delta_bytes": 507392,
+      "dev_exact_median_ms": 0.1827,
+      "dev_ivf_median_ms": 0.14065,
+      "dev_ivf_p95_ms": 0.161285,
+      "dev_timing_queries": 64
+    },
+    {
+      "clusters": 256,
+      "probes": 1,
+      "dev_accuracy": 0.7474429583,
+      "dev_exact_agreement": 0.7608182533,
+      "mean_window_visits": 447.9940991345,
+      "visit_fraction": 0.0040608602,
+      "build_seconds": 0.0758304,
+      "training_iterations": 20,
+      "index_bytes": 704452,
+      "fit_allocated_delta_bytes": 705024,
+      "dev_exact_median_ms": 0.1984,
+      "dev_ivf_median_ms": 0.0785,
+      "dev_ivf_p95_ms": 0.37787,
+      "dev_timing_queries": 64
+    },
+    {
+      "clusters": 256,
+      "probes": 4,
+      "dev_accuracy": 0.935483871,
+      "dev_exact_agreement": 0.9531864673,
+      "mean_window_visits": 1760.9405979544,
+      "visit_fraction": 0.0159621156,
+      "build_seconds": 0.0758304,
+      "training_iterations": 20,
+      "index_bytes": 704452,
+      "fit_allocated_delta_bytes": 705024,
+      "dev_exact_median_ms": 0.19625,
+      "dev_ivf_median_ms": 0.0778,
+      "dev_ivf_p95_ms": 0.145005,
+      "dev_timing_queries": 64
+    },
+    {
+      "clusters": 256,
+      "probes": 16,
+      "dev_accuracy": 0.9732494099,
+      "dev_exact_agreement": 0.9948859166,
+      "mean_window_visits": 6851.7293469709,
+      "visit_fraction": 0.0621077715,
+      "build_seconds": 0.0758304,
+      "training_iterations": 20,
+      "index_bytes": 704452,
+      "fit_allocated_delta_bytes": 705024,
+      "dev_exact_median_ms": 0.19395,
+      "dev_ivf_median_ms": 0.0789,
+      "dev_ivf_p95_ms": 0.095025,
+      "dev_timing_queries": 64
+    },
+    {
+      "clusters": 1024,
+      "probes": 1,
+      "dev_accuracy": 0.756490952,
+      "dev_exact_agreement": 0.769079465,
+      "mean_window_visits": 115.9500393391,
+      "visit_fraction": 0.0010510337,
+      "build_seconds": 0.1007384,
+      "training_iterations": 20,
+      "index_bytes": 1493956,
+      "fit_allocated_delta_bytes": 1494528,
+      "dev_exact_median_ms": 0.19945,
+      "dev_ivf_median_ms": 0.0718,
+      "dev_ivf_p95_ms": 0.07873,
+      "dev_timing_queries": 64
+    },
+    {
+      "clusters": 1024,
+      "probes": 4,
+      "dev_accuracy": 0.9264358773,
+      "dev_exact_agreement": 0.9429583006,
+      "mean_window_visits": 458.2631785995,
+      "visit_fraction": 0.0041539447,
+      "build_seconds": 0.1007384,
+      "training_iterations": 20,
+      "index_bytes": 1493956,
+      "fit_allocated_delta_bytes": 1494528,
+      "dev_exact_median_ms": 0.2,
+      "dev_ivf_median_ms": 0.06785,
+      "dev_ivf_p95_ms": 0.21464,
+      "dev_timing_queries": 64
+    },
+    {
+      "clusters": 1024,
+      "probes": 16,
+      "dev_accuracy": 0.9665617624,
+      "dev_exact_agreement": 0.987411487,
+      "mean_window_visits": 1777.6424075531,
+      "visit_fraction": 0.0161135099,
+      "build_seconds": 0.1007384,
+      "training_iterations": 20,
+      "index_bytes": 1493956,
+      "fit_allocated_delta_bytes": 1494528,
+      "dev_exact_median_ms": 0.19675,
+      "dev_ivf_median_ms": 0.06705,
+      "dev_ivf_p95_ms": 0.21266,
+      "dev_timing_queries": 64
+    }
+  ],
+  "selected_ivf": {
+    "clusters": 256,
+    "probes": 16,
+    "development_accuracy": 0.973249409913454,
+    "mean_window_visits": 6851.729346970889,
+    "index_bytes": 704452,
+    "build_seconds": 0.07583039999735774,
+    "training_iterations": 20
+  },
+  "heldout_by_distortion": [
+    {
+      "query_set": "Standard",
+      "distortion": "band_pass",
+      "method": "Exact",
+      "queries": 749,
+      "track_accuracy": 0.9826435247
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "band_pass",
+      "method": "Frozen LSH",
+      "queries": 749,
+      "track_accuracy": 0.9826435247
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "band_pass",
+      "method": "IVF",
+      "queries": 749,
+      "track_accuracy": 0.9773030708
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "echo",
+      "method": "Exact",
+      "queries": 739,
+      "track_accuracy": 0.9851150203
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "echo",
+      "method": "Frozen LSH",
+      "queries": 739,
+      "track_accuracy": 0.9851150203
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "echo",
+      "method": "IVF",
+      "queries": 739,
+      "track_accuracy": 0.9824086604
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "high_pass",
+      "method": "Exact",
+      "queries": 812,
+      "track_accuracy": 0.9889162562
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "high_pass",
+      "method": "Frozen LSH",
+      "queries": 812,
+      "track_accuracy": 0.9889162562
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "high_pass",
+      "method": "IVF",
+      "queries": 812,
+      "track_accuracy": 0.9839901478
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "low_pass",
+      "method": "Exact",
+      "queries": 728,
+      "track_accuracy": 0.989010989
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "low_pass",
+      "method": "Frozen LSH",
+      "queries": 728,
+      "track_accuracy": 0.989010989
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "low_pass",
+      "method": "IVF",
+      "queries": 728,
+      "track_accuracy": 0.989010989
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "noise",
+      "method": "Exact",
+      "queries": 800,
+      "track_accuracy": 0.96625
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "noise",
+      "method": "Frozen LSH",
+      "queries": 800,
+      "track_accuracy": 0.96625
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "noise",
+      "method": "IVF",
+      "queries": 800,
+      "track_accuracy": 0.95875
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "pitch_shift",
+      "method": "Exact",
+      "queries": 746,
+      "track_accuracy": 0.9852546917
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "pitch_shift",
+      "method": "Frozen LSH",
+      "queries": 746,
+      "track_accuracy": 0.9852546917
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "pitch_shift",
+      "method": "IVF",
+      "queries": 746,
+      "track_accuracy": 0.9772117962
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "reverb",
+      "method": "Exact",
+      "queries": 748,
+      "track_accuracy": 0.9839572193
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "reverb",
+      "method": "Frozen LSH",
+      "queries": 748,
+      "track_accuracy": 0.9839572193
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "reverb",
+      "method": "IVF",
+      "queries": 748,
+      "track_accuracy": 0.9812834225
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "reverb+noise",
+      "method": "Exact",
+      "queries": 764,
+      "track_accuracy": 0.9659685864
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "reverb+noise",
+      "method": "Frozen LSH",
+      "queries": 764,
+      "track_accuracy": 0.9659685864
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "reverb+noise",
+      "method": "IVF",
+      "queries": 764,
+      "track_accuracy": 0.9581151832
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "time_stretch",
+      "method": "Exact",
+      "queries": 686,
+      "track_accuracy": 0.9839650146
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "time_stretch",
+      "method": "Frozen LSH",
+      "queries": 686,
+      "track_accuracy": 0.9839650146
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "time_stretch",
+      "method": "IVF",
+      "queries": 686,
+      "track_accuracy": 0.9825072886
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "time_stretch+pitch_shift",
+      "method": "Exact",
+      "queries": 686,
+      "track_accuracy": 0.9781341108
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "time_stretch+pitch_shift",
+      "method": "Frozen LSH",
+      "queries": 686,
+      "track_accuracy": 0.9781341108
+    },
+    {
+      "query_set": "Standard",
+      "distortion": "time_stretch+pitch_shift",
+      "method": "IVF",
+      "queries": 686,
+      "track_accuracy": 0.9635568513
+    },
+    {
+      "query_set": "TikTok-like",
+      "distortion": "compression",
+      "method": "Exact",
+      "queries": 2486,
+      "track_accuracy": 0.9859211585
+    },
+    {
+      "query_set": "TikTok-like",
+      "distortion": "compression",
+      "method": "Frozen LSH",
+      "queries": 2486,
+      "track_accuracy": 0.9859211585
+    },
+    {
+      "query_set": "TikTok-like",
+      "distortion": "compression",
+      "method": "IVF",
+      "queries": 2486,
+      "track_accuracy": 0.9835076428
+    },
+    {
+      "query_set": "TikTok-like",
+      "distortion": "speed_up",
+      "method": "Exact",
+      "queries": 2051,
+      "track_accuracy": 0.9726962457
+    },
+    {
+      "query_set": "TikTok-like",
+      "distortion": "speed_up",
+      "method": "Frozen LSH",
+      "queries": 2051,
+      "track_accuracy": 0.9726962457
+    },
+    {
+      "query_set": "TikTok-like",
+      "distortion": "speed_up",
+      "method": "IVF",
+      "queries": 2051,
+      "track_accuracy": 0.9624573379
+    },
+    {
+      "query_set": "TikTok-like",
+      "distortion": "speed_up+voice_over+compression",
+      "method": "Exact",
+      "queries": 2035,
+      "track_accuracy": 0.7916461916
+    },
+    {
+      "query_set": "TikTok-like",
+      "distortion": "speed_up+voice_over+compression",
+      "method": "Frozen LSH",
+      "queries": 2035,
+      "track_accuracy": 0.7916461916
+    },
+    {
+      "query_set": "TikTok-like",
+      "distortion": "speed_up+voice_over+compression",
+      "method": "IVF",
+      "queries": 2035,
+      "track_accuracy": 0.7788697789
+    },
+    {
+      "query_set": "TikTok-like",
+      "distortion": "voice_over",
+      "method": "Exact",
+      "queries": 2420,
+      "track_accuracy": 0.9727272727
+    },
+    {
+      "query_set": "TikTok-like",
+      "distortion": "voice_over",
+      "method": "Frozen LSH",
+      "queries": 2420,
+      "track_accuracy": 0.9727272727
+    },
+    {
+      "query_set": "TikTok-like",
+      "distortion": "voice_over",
+      "method": "IVF",
+      "queries": 2420,
+      "track_accuracy": 0.9661157025
+    }
+  ],
+  "single_query_timing": {
+    "exact": {
+      "median_ms": 0.17785,
+      "p95_ms": 0.2072
+    },
+    "lsh": {
+      "median_ms": 0.08804999999999999,
+      "p95_ms": 0.114575
+    },
+    "ivf": {
+      "median_ms": 0.07615,
+      "p95_ms": 0.163325
+    }
+  },
+  "resident_batch_throughput": {
+    "exact": {
+      "median_seconds": 0.04573370000071009,
+      "p95_seconds": 0.04916621000011218,
+      "median_queries_per_second": 359690.9937255151
+    },
+    "lsh": {
+      "median_seconds": 0.24484075000145822,
+      "p95_seconds": 0.2513479700042808,
+      "median_queries_per_second": 67186.5283859081
+    },
+    "ivf": {
+      "median_seconds": 0.0366679499966267,
+      "p95_seconds": 0.03726173499853758,
+      "median_queries_per_second": 448620.6619544679
+    }
+  },
+  "index_footprint": {
+    "ivf_bytes": 704452,
+    "frozen_lsh_bytes": 29159680,
+    "shared_reference_bytes": 112967680,
+    "training_fit_chunk_size": 8192,
+    "temporary_fit_similarity_bytes": 33554432,
+    "cuda_compile_and_warmup_seconds": 0.24963109999953303
+  },
+  "figures": {
+    "png": "reports/figures/ivf-medium.png",
+    "pdf": "reports/figures/ivf-medium.pdf"
+  },
+  "limitations": [
+    "Synthetic distortions do not represent all real phone recordings.",
+    "Timing measures warmed retrieval with vectors and index already on the GPU.",
+    "Spherical k-means starts from a seeded sample of reference vectors and uses bounded Lloyd iterations."
+  ]
+}

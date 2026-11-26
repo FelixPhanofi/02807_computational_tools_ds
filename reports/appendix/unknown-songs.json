@@ -1,0 +1,155 @@
+{
+  "development_false_acceptance_target": 0.01,
+  "seed": 6821,
+  "lsh": {
+    "bits": 10,
+    "tables": 64,
+    "additional_probes": 3
+  },
+  "evaluation": [
+    {
+      "method": "exact",
+      "family": "all",
+      "metric": "correct known acceptance",
+      "threshold": 0.8370281457901001,
+      "queries": 1024,
+      "tracks": 512,
+      "events": 515,
+      "rate": 0.5029296875,
+      "lower": 0.474609375,
+      "upper": 0.5302734375
+    },
+    {
+      "method": "exact",
+      "family": "all",
+      "metric": "unknown false acceptance",
+      "threshold": 0.8370281457901001,
+      "queries": 1024,
+      "tracks": 512,
+      "events": 8,
+      "rate": 0.0078125,
+      "lower": 0.0029296875,
+      "upper": 0.0146484375
+    },
+    {
+      "method": "exact",
+      "family": "standard",
+      "metric": "correct known acceptance",
+      "threshold": 0.8370281457901001,
+      "queries": 512,
+      "tracks": 512,
+      "events": 362,
+      "rate": 0.70703125,
+      "lower": 0.666015625,
+      "upper": 0.74609375
+    },
+    {
+      "method": "exact",
+      "family": "standard",
+      "metric": "unknown false acceptance",
+      "threshold": 0.8370281457901001,
+      "queries": 512,
+      "tracks": 512,
+      "events": 6,
+      "rate": 0.01171875,
+      "lower": 0.00390625,
+      "upper": 0.021484375
+    },
+    {
+      "method": "exact",
+      "family": "tiktok",
+      "metric": "correct known acceptance",
+      "threshold": 0.8370281457901001,
+      "queries": 512,
+      "tracks": 512,
+      "events": 153,
+      "rate": 0.298828125,
+      "lower": 0.2578125,
+      "upper": 0.33984375
+    },
+    {
+      "method": "exact",
+      "family": "tiktok",
+      "metric": "unknown false acceptance",
+      "threshold": 0.8370281457901001,
+      "queries": 512,
+      "tracks": 512,
+      "events": 2,
+      "rate": 0.00390625,
+      "lower": 0.0,
+      "upper": 0.009765625
+    },
+    {
+      "method": "lsh",
+      "family": "all",
+      "metric": "correct known acceptance",
+      "threshold": 0.8370278477668762,
+      "queries": 1024,
+      "tracks": 512,
+      "events": 515,
+      "rate": 0.5029296875,
+      "lower": 0.474609375,
+      "upper": 0.5302734375
+    },
+    {
+      "method": "lsh",
+      "family": "all",
+      "metric": "unknown false acceptance",
+      "threshold": 0.8370278477668762,
+      "queries": 1024,
+      "tracks": 512,
+      "events": 8,
+      "rate": 0.0078125,
+      "lower": 0.0029296875,
+      "upper": 0.0146484375
+    },
+    {
+      "method": "lsh",
+      "family": "standard",
+      "metric": "correct known acceptance",
+      "threshold": 0.8370278477668762,
+      "queries": 512,
+      "tracks": 512,
+      "events": 362,
+      "rate": 0.70703125,
+      "lower": 0.666015625,
+      "upper": 0.74609375
+    },
+    {
+      "method": "lsh",
+      "family": "standard",
+      "metric": "unknown false acceptance",
+      "threshold": 0.8370278477668762,
+      "queries": 512,
+      "tracks": 512,
+      "events": 6,
+      "rate": 0.01171875,
+      "lower": 0.00390625,
+      "upper": 0.021484375
+    },
+    {
+      "method": "lsh",
+      "family": "tiktok",
+      "metric": "correct known acceptance",
+      "threshold": 0.8370278477668762,
+      "queries": 512,
+      "tracks": 512,
+      "events": 153,
+      "rate": 0.298828125,
+      "lower": 0.2578125,
+      "upper": 0.33984375
+    },
+    {
+      "method": "lsh",
+      "family": "tiktok",
+      "metric": "unknown false acceptance",
+      "threshold": 0.8370278477668762,
+      "queries": 512,
+      "tracks": 512,
+      "events": 2,
+      "rate": 0.00390625,
+      "lower": 0.0,
+      "upper": 0.009765625
+    }
+  ]
+}

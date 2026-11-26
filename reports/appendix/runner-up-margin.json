@@ -1,0 +1,354 @@
+{
+  "seed": 7741,
+  "false_acceptance_target": 0.01,
+  "data": {
+    "queries": 4096,
+    "unique_tracks": 2048,
+    "queries_per_track": 2,
+    "removed_tracks": 1024,
+    "reference_windows": 105767,
+    "reference_tracks": 23946,
+    "fingerprints_sha256": "174234b82db42e42839b26b7d52372b908075d5724451037b26e4a865d33a9b9",
+    "query_embeddings_sha256": "b2fe0af28f7766148f852b8627d936d7049503ef56f081a5ca68b958a9fa218c",
+    "projection_head_sha256": "4a5fb50d5dea344c0fdc803e9c825b6dfbd39b5dc86bafdce96c261e63801c6f",
+    "backbone": "OpenMuQ/MuQ-large-msd-iter@0562a57814f6f8bb9dfea0a25921a2fce1a841a",
+    "cohort_track_ids_sha256": "f496958ec983ad996bd91e702f524b987f38d5af26a2ec6df408bb89cea37fb2",
+    "split_track_counts": {
+      "development_False": 512,
+      "development_True": 512,
+      "test_False": 512,
+      "test_True": 512
+    }
+  },
+  "threshold_selection": {
+    "max_false_accepts_on_development": 10,
+    "maximum_score": {
+      "score_threshold": 0.834209919,
+      "gap_threshold": null,
+      "dev_false_accepts": 10,
+      "dev_known_correct_accepts": 551
+    },
+    "score_and_margin": {
+      "score_threshold": 0.749896646,
+      "gap_threshold": 0.11748421200000002,
+      "dev_false_accepts": 10,
+      "dev_known_correct_accepts": 755
+    }
+  },
+  "development": [
+    {
+      "phase": "development",
+      "rule_name": "maximum_score",
+      "score_threshold": 0.834209919,
+      "gap_threshold": null,
+      "dev_false_accepts": 10,
+      "dev_known_correct_accepts": 551,
+      "known_correct_accepted": 551,
+      "known_queries": 1024,
+      "known_correct_acceptance_rate": 0.5380859375,
+      "known_accepted_incorrectly": 3,
+      "known_rate_track_bootstrap_95": [
+        0.5087890625,
+        0.56640625
+      ],
+      "unknown_false_accepts": 10,
+      "unknown_queries": 1024,
+      "unknown_false_acceptance_rate": 0.009765625,
+      "unknown_rate_track_bootstrap_95": [
+        0.0029296875,
+        0.0185546875
+      ],
+      "families": {
+        "standard": {
+          "known_correct_accepted": 377,
+          "known_queries": 512,
+          "known_correct_acceptance_rate": 0.736328125,
+          "known_accepted_incorrectly": 3,
+          "known_rate_track_bootstrap_95": [
+            0.697265625,
+            0.7734375
+          ],
+          "unknown_false_accepts": 6,
+          "unknown_queries": 512,
+          "unknown_false_acceptance_rate": 0.01171875,
+          "unknown_rate_track_bootstrap_95": [
+            0.00390625,
+            0.021484375
+          ]
+        },
+        "tiktok": {
+          "known_correct_accepted": 174,
+          "known_queries": 512,
+          "known_correct_acceptance_rate": 0.33984375,
+          "known_accepted_incorrectly": 0,
+          "known_rate_track_bootstrap_95": [
+            0.298828125,
+            0.380859375
+          ],
+          "unknown_false_accepts": 4,
+          "unknown_queries": 512,
+          "unknown_false_acceptance_rate": 0.0078125,
+          "unknown_rate_track_bootstrap_95": [
+            0.001953125,
+            0.015625
+          ]
+        }
+      }
+    },
+    {
+      "phase": "development",
+      "rule_name": "score_and_margin",
+      "score_threshold": 0.749896646,
+      "gap_threshold": 0.11748421200000002,
+      "dev_false_accepts": 10,
+      "dev_known_correct_accepts": 755,
+      "known_correct_accepted": 755,
+      "known_queries": 1024,
+      "known_correct_acceptance_rate": 0.7373046875,
+      "known_accepted_incorrectly": 0,
+      "known_rate_track_bootstrap_95": [
+        0.708984375,
+        0.7646484375
+      ],
+      "unknown_false_accepts": 10,
+      "unknown_queries": 1024,
+      "unknown_false_acceptance_rate": 0.009765625,
+      "unknown_rate_track_bootstrap_95": [
+        0.0029296875,
+        0.0185546875
+      ],
+      "families": {
+        "standard": {
+          "known_correct_accepted": 451,
+          "known_queries": 512,
+          "known_correct_acceptance_rate": 0.880859375,
+          "known_accepted_incorrectly": 0,
+          "known_rate_track_bootstrap_95": [
+            0.8515625,
+            0.908203125
+          ],
+          "unknown_false_accepts": 6,
+          "unknown_queries": 512,
+          "unknown_false_acceptance_rate": 0.01171875,
+          "unknown_rate_track_bootstrap_95": [
+            0.00390625,
+            0.021484375
+          ]
+        },
+        "tiktok": {
+          "known_correct_accepted": 304,
+          "known_queries": 512,
+          "known_correct_acceptance_rate": 0.59375,
+          "known_accepted_incorrectly": 0,
+          "known_rate_track_bootstrap_95": [
+            0.55078125,
+            0.63671875
+          ],
+          "unknown_false_accepts": 4,
+          "unknown_queries": 512,
+          "unknown_false_acceptance_rate": 0.0078125,
+          "unknown_rate_track_bootstrap_95": [
+            0.001953125,
+            0.015625
+          ]
+        }
+      }
+    }
+  ],
+  "test": [
+    {
+      "phase": "test",
+      "rule_name": "maximum_score",
+      "score_threshold": 0.834209919,
+      "gap_threshold": null,
+      "dev_false_accepts": 10,
+      "dev_known_correct_accepts": 551,
+      "known_correct_accepted": 538,
+      "known_queries": 1024,
+      "known_correct_acceptance_rate": 0.525390625,
+      "known_accepted_incorrectly": 2,
+      "known_rate_track_bootstrap_95": [
+        0.4970703125,
+        0.5537109375
+      ],
+      "unknown_false_accepts": 4,
+      "unknown_queries": 1024,
+      "unknown_false_acceptance_rate": 0.00390625,
+      "unknown_rate_track_bootstrap_95": [
+        0.0009765625,
+        0.0078125
+      ],
+      "families": {
+        "standard": {
+          "known_correct_accepted": 369,
+          "known_queries": 512,
+          "known_correct_acceptance_rate": 0.720703125,
+          "known_accepted_incorrectly": 1,
+          "known_rate_track_bootstrap_95": [
+            0.6796875,
+            0.759765625
+          ],
+          "unknown_false_accepts": 4,
+          "unknown_queries": 512,
+          "unknown_false_acceptance_rate": 0.0078125,
+          "unknown_rate_track_bootstrap_95": [
+            0.001953125,
+            0.015625
+          ]
+        },
+        "tiktok": {
+          "known_correct_accepted": 169,
+          "known_queries": 512,
+          "known_correct_acceptance_rate": 0.330078125,
+          "known_accepted_incorrectly": 1,
+          "known_rate_track_bootstrap_95": [
+            0.2890625,
+            0.37109375
+          ],
+          "unknown_false_accepts": 0,
+          "unknown_queries": 512,
+          "unknown_false_acceptance_rate": 0.0,
+          "unknown_rate_track_bootstrap_95": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "phase": "test",
+      "rule_name": "score_and_margin",
+      "score_threshold": 0.749896646,
+      "gap_threshold": 0.11748421200000002,
+      "dev_false_accepts": 10,
+      "dev_known_correct_accepts": 755,
+      "known_correct_accepted": 731,
+      "known_queries": 1024,
+      "known_correct_acceptance_rate": 0.7138671875,
+      "known_accepted_incorrectly": 0,
+      "known_rate_track_bootstrap_95": [
+        0.6875,
+        0.740234375
+      ],
+      "unknown_false_accepts": 11,
+      "unknown_queries": 1024,
+      "unknown_false_acceptance_rate": 0.0107421875,
+      "unknown_rate_track_bootstrap_95": [
+        0.00390625,
+        0.0185546875
+      ],
+      "families": {
+        "standard": {
+          "known_correct_accepted": 454,
+          "known_queries": 512,
+          "known_correct_acceptance_rate": 0.88671875,
+          "known_accepted_incorrectly": 0,
+          "known_rate_track_bootstrap_95": [
+            0.859375,
+            0.912109375
+          ],
+          "unknown_false_accepts": 8,
+          "unknown_queries": 512,
+          "unknown_false_acceptance_rate": 0.015625,
+          "unknown_rate_track_bootstrap_95": [
+            0.005859375,
+            0.02734375
+          ]
+        },
+        "tiktok": {
+          "known_correct_accepted": 277,
+          "known_queries": 512,
+          "known_correct_acceptance_rate": 0.541015625,
+          "known_accepted_incorrectly": 0,
+          "known_rate_track_bootstrap_95": [
+            0.498046875,
+            0.583984375
+          ],
+          "unknown_false_accepts": 3,
+          "unknown_queries": 512,
+          "unknown_false_acceptance_rate": 0.005859375,
+          "unknown_rate_track_bootstrap_95": [
+            0.0,
+            0.013671875
+          ]
+        }
+      }
+    }
+  ],
+  "paired_test_comparison": {
+    "all": {
+      "known_correct_acceptance": {
+        "queries": 1024,
+        "score_rule_rate": 0.525390625,
+        "margin_rule_rate": 0.7138671875,
+        "margin_minus_score_percentage_points": 18.84765625,
+        "paired_track_bootstrap_95_percentage_points": [
+          16.30859375,
+          21.38671875
+        ]
+      },
+      "unknown_false_acceptance": {
+        "queries": 1024,
+        "score_rule_rate": 0.00390625,
+        "margin_rule_rate": 0.0107421875,
+        "margin_minus_score_percentage_points": 0.68359375,
+        "paired_track_bootstrap_95_percentage_points": [
+          0.09765625,
+          1.3671875
+        ]
+      }
+    },
+    "families": {
+      "standard": {
+        "known_correct_acceptance": {
+          "queries": 512,
+          "score_rule_rate": 0.720703125,
+          "margin_rule_rate": 0.88671875,
+          "margin_minus_score_percentage_points": 16.6015625,
+          "paired_track_bootstrap_95_percentage_points": [
+            13.0859375,
+            20.1171875
+          ]
+        },
+        "unknown_false_acceptance": {
+          "queries": 512,
+          "score_rule_rate": 0.0078125,
+          "margin_rule_rate": 0.015625,
+          "margin_minus_score_percentage_points": 0.78125,
+          "paired_track_bootstrap_95_percentage_points": [
+            0.0,
+            1.7578125
+          ]
+        }
+      },
+      "tiktok": {
+        "known_correct_acceptance": {
+          "queries": 512,
+          "score_rule_rate": 0.330078125,
+          "margin_rule_rate": 0.541015625,
+          "margin_minus_score_percentage_points": 21.09375,
+          "paired_track_bootstrap_95_percentage_points": [
+            17.578125,
+            24.8046875
+          ]
+        },
+        "unknown_false_acceptance": {
+          "queries": 512,
+          "score_rule_rate": 0.0,
+          "margin_rule_rate": 0.005859375,
+          "margin_minus_score_percentage_points": 0.5859375,
+          "paired_track_bootstrap_95_percentage_points": [
+            0.0,
+            1.3671875
+          ]
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Queries use synthetic augmentations; physical phone recordings are not included.",
+    "The runner-up is the best window score from a track distinct from the top result.",
+    "Thresholds maximise correct known acceptance under a 1% empirical unknown false-acceptance constraint.",
+    "Fresh tracks exclude training pairs, both earlier query archives and the earlier unknown-song cohort."
+  ]
+}

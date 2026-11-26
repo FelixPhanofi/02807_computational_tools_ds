@@ -1,0 +1,887 @@
+{
+  "runs": [
+    {
+      "method": "cosine",
+      "target": 0.0025,
+      "rule": {
+        "score": 0.8783862590789796,
+        "gap": 0.0,
+        "landmark_weight": 0.0
+      },
+      "dev": {
+        "correct": 188,
+        "wrong_known": 1,
+        "false_accepts": 1,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 468
+      },
+      "test": {
+        "correct": 185,
+        "wrong_known": 1,
+        "false_accepts": 3,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 472
+      }
+    },
+    {
+      "method": "landmarks_only",
+      "target": 0.0025,
+      "rule": {
+        "score": 0.6965811848640443,
+        "gap": 0.0,
+        "landmark_weight": "landmarks"
+      },
+      "dev": {
+        "correct": 209,
+        "wrong_known": 0,
+        "false_accepts": 1,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 494
+      },
+      "test": {
+        "correct": 210,
+        "wrong_known": 0,
+        "false_accepts": 2,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 485
+      }
+    },
+    {
+      "method": "fusion",
+      "target": 0.0025,
+      "rule": {
+        "score": 6.339076042175294,
+        "gap": 0.0,
+        "landmark_weight": 8.0
+      },
+      "dev": {
+        "correct": 224,
+        "wrong_known": 0,
+        "false_accepts": 1,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 495
+      },
+      "test": {
+        "correct": 222,
+        "wrong_known": 0,
+        "false_accepts": 3,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 486
+      }
+    },
+    {
+      "method": "cosine",
+      "target": 0.01,
+      "rule": {
+        "score": -1000000.0,
+        "gap": 0.14768898487091064,
+        "landmark_weight": 0.0
+      },
+      "dev": {
+        "correct": 350,
+        "wrong_known": 0,
+        "false_accepts": 5,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 468
+      },
+      "test": {
+        "correct": 344,
+        "wrong_known": 0,
+        "false_accepts": 8,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 472
+      },
+      "unknown_rate_ci_pct": [
+        0.390625,
+        3.125
+      ],
+      "strict_id_correct_accepted": 342,
+      "distortions": {
+        "band_pass": {
+          "correct": 20,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 22,
+          "unknown": 28,
+          "closed_top1": 22
+        },
+        "compression": {
+          "correct": 56,
+          "wrong_known": 0,
+          "false_accepts": 1,
+          "known": 64,
+          "unknown": 64,
+          "closed_top1": 64
+        },
+        "echo": {
+          "correct": 29,
+          "wrong_known": 0,
+          "false_accepts": 1,
+          "known": 30,
+          "unknown": 22,
+          "closed_top1": 30
+        },
+        "high_pass": {
+          "correct": 17,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 21,
+          "unknown": 20,
+          "closed_top1": 19
+        },
+        "low_pass": {
+          "correct": 18,
+          "wrong_known": 0,
+          "false_accepts": 2,
+          "known": 20,
+          "unknown": 33,
+          "closed_top1": 20
+        },
+        "noise": {
+          "correct": 20,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 28,
+          "unknown": 21,
+          "closed_top1": 27
+        },
+        "pitch_shift": {
+          "correct": 17,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 25,
+          "unknown": 32,
+          "closed_top1": 25
+        },
+        "reverb": {
+          "correct": 24,
+          "wrong_known": 0,
+          "false_accepts": 2,
+          "known": 27,
+          "unknown": 28,
+          "closed_top1": 27
+        },
+        "reverb+noise": {
+          "correct": 15,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 19,
+          "unknown": 23,
+          "closed_top1": 18
+        },
+        "speed_up": {
+          "correct": 28,
+          "wrong_known": 0,
+          "false_accepts": 1,
+          "known": 64,
+          "unknown": 64,
+          "closed_top1": 57
+        },
+        "speed_up+voice_over+compression": {
+          "correct": 7,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 64,
+          "unknown": 64,
+          "closed_top1": 41
+        },
+        "time_stretch": {
+          "correct": 29,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 35,
+          "unknown": 24,
+          "closed_top1": 35
+        },
+        "time_stretch+pitch_shift": {
+          "correct": 17,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 29,
+          "unknown": 25,
+          "closed_top1": 27
+        },
+        "voice_over": {
+          "correct": 47,
+          "wrong_known": 0,
+          "false_accepts": 1,
+          "known": 64,
+          "unknown": 64,
+          "closed_top1": 60
+        }
+      },
+      "families": {
+        "standard": {
+          "correct": 206,
+          "wrong_known": 0,
+          "false_accepts": 5,
+          "known": 256,
+          "unknown": 256,
+          "closed_top1": 250
+        },
+        "tiktok": {
+          "correct": 138,
+          "wrong_known": 0,
+          "false_accepts": 3,
+          "known": 256,
+          "unknown": 256,
+          "closed_top1": 222
+        }
+      }
+    },
+    {
+      "method": "landmarks_only",
+      "target": 0.01,
+      "rule": {
+        "score": 0.4230769276618958,
+        "gap": 0.0,
+        "landmark_weight": "landmarks"
+      },
+      "dev": {
+        "correct": 429,
+        "wrong_known": 0,
+        "false_accepts": 5,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 494
+      },
+      "test": {
+        "correct": 419,
+        "wrong_known": 1,
+        "false_accepts": 9,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 485
+      },
+      "unknown_rate_ci_pct": [
+        0.5859375,
+        3.3203125
+      ],
+      "strict_id_correct_accepted": 415,
+      "distortions": {
+        "band_pass": {
+          "correct": 22,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 22,
+          "unknown": 28,
+          "closed_top1": 22
+        },
+        "compression": {
+          "correct": 64,
+          "wrong_known": 0,
+          "false_accepts": 1,
+          "known": 64,
+          "unknown": 64,
+          "closed_top1": 64
+        },
+        "echo": {
+          "correct": 29,
+          "wrong_known": 0,
+          "false_accepts": 1,
+          "known": 30,
+          "unknown": 22,
+          "closed_top1": 30
+        },
+        "high_pass": {
+          "correct": 20,
+          "wrong_known": 1,
+          "false_accepts": 0,
+          "known": 21,
+          "unknown": 20,
+          "closed_top1": 20
+        },
+        "low_pass": {
+          "correct": 20,
+          "wrong_known": 0,
+          "false_accepts": 2,
+          "known": 20,
+          "unknown": 33,
+          "closed_top1": 20
+        },
+        "noise": {
+          "correct": 27,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 28,
+          "unknown": 21,
+          "closed_top1": 27
+        },
+        "pitch_shift": {
+          "correct": 17,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 25,
+          "unknown": 32,
+          "closed_top1": 24
+        },
+        "reverb": {
+          "correct": 27,
+          "wrong_known": 0,
+          "false_accepts": 3,
+          "known": 27,
+          "unknown": 28,
+          "closed_top1": 27
+        },
+        "reverb+noise": {
+          "correct": 19,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 19,
+          "unknown": 23,
+          "closed_top1": 19
+        },
+        "speed_up": {
+          "correct": 57,
+          "wrong_known": 0,
+          "false_accepts": 2,
+          "known": 64,
+          "unknown": 64,
+          "closed_top1": 57
+        },
+        "speed_up+voice_over+compression": {
+          "correct": 35,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 64,
+          "unknown": 64,
+          "closed_top1": 52
+        },
+        "time_stretch": {
+          "correct": 26,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 35,
+          "unknown": 24,
+          "closed_top1": 35
+        },
+        "time_stretch+pitch_shift": {
+          "correct": 10,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 29,
+          "unknown": 25,
+          "closed_top1": 28
+        },
+        "voice_over": {
+          "correct": 46,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 64,
+          "unknown": 64,
+          "closed_top1": 60
+        }
+      },
+      "families": {
+        "standard": {
+          "correct": 217,
+          "wrong_known": 1,
+          "false_accepts": 6,
+          "known": 256,
+          "unknown": 256,
+          "closed_top1": 252
+        },
+        "tiktok": {
+          "correct": 202,
+          "wrong_known": 0,
+          "false_accepts": 3,
+          "known": 256,
+          "unknown": 256,
+          "closed_top1": 233
+        }
+      }
+    },
+    {
+      "method": "fusion",
+      "target": 0.01,
+      "rule": {
+        "score": 2.469162464141846,
+        "gap": 0.0,
+        "landmark_weight": 4.0
+      },
+      "dev": {
+        "correct": 428,
+        "wrong_known": 0,
+        "false_accepts": 5,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 496
+      },
+      "test": {
+        "correct": 418,
+        "wrong_known": 1,
+        "false_accepts": 9,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 487
+      },
+      "unknown_rate_ci_pct": [
+        0.5859375,
+        3.3203125
+      ],
+      "strict_id_correct_accepted": 414,
+      "distortions": {
+        "band_pass": {
+          "correct": 22,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 22,
+          "unknown": 28,
+          "closed_top1": 22
+        },
+        "compression": {
+          "correct": 64,
+          "wrong_known": 0,
+          "false_accepts": 1,
+          "known": 64,
+          "unknown": 64,
+          "closed_top1": 64
+        },
+        "echo": {
+          "correct": 29,
+          "wrong_known": 0,
+          "false_accepts": 1,
+          "known": 30,
+          "unknown": 22,
+          "closed_top1": 30
+        },
+        "high_pass": {
+          "correct": 20,
+          "wrong_known": 1,
+          "false_accepts": 0,
+          "known": 21,
+          "unknown": 20,
+          "closed_top1": 20
+        },
+        "low_pass": {
+          "correct": 20,
+          "wrong_known": 0,
+          "false_accepts": 2,
+          "known": 20,
+          "unknown": 33,
+          "closed_top1": 20
+        },
+        "noise": {
+          "correct": 27,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 28,
+          "unknown": 21,
+          "closed_top1": 27
+        },
+        "pitch_shift": {
+          "correct": 18,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 25,
+          "unknown": 32,
+          "closed_top1": 25
+        },
+        "reverb": {
+          "correct": 27,
+          "wrong_known": 0,
+          "false_accepts": 3,
+          "known": 27,
+          "unknown": 28,
+          "closed_top1": 27
+        },
+        "reverb+noise": {
+          "correct": 19,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 19,
+          "unknown": 23,
+          "closed_top1": 19
+        },
+        "speed_up": {
+          "correct": 57,
+          "wrong_known": 0,
+          "false_accepts": 2,
+          "known": 64,
+          "unknown": 64,
+          "closed_top1": 57
+        },
+        "speed_up+voice_over+compression": {
+          "correct": 32,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 64,
+          "unknown": 64,
+          "closed_top1": 52
+        },
+        "time_stretch": {
+          "correct": 27,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 35,
+          "unknown": 24,
+          "closed_top1": 35
+        },
+        "time_stretch+pitch_shift": {
+          "correct": 10,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 29,
+          "unknown": 25,
+          "closed_top1": 28
+        },
+        "voice_over": {
+          "correct": 46,
+          "wrong_known": 0,
+          "false_accepts": 0,
+          "known": 64,
+          "unknown": 64,
+          "closed_top1": 61
+        }
+      },
+      "families": {
+        "standard": {
+          "correct": 219,
+          "wrong_known": 1,
+          "false_accepts": 6,
+          "known": 256,
+          "unknown": 256,
+          "closed_top1": 253
+        },
+        "tiktok": {
+          "correct": 199,
+          "wrong_known": 0,
+          "false_accepts": 3,
+          "known": 256,
+          "unknown": 256,
+          "closed_top1": 234
+        }
+      }
+    },
+    {
+      "method": "cosine",
+      "target": 0.02,
+      "rule": {
+        "score": 0.675360679626465,
+        "gap": 0.09898561239242554,
+        "landmark_weight": 0.0
+      },
+      "dev": {
+        "correct": 402,
+        "wrong_known": 0,
+        "false_accepts": 10,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 468
+      },
+      "test": {
+        "correct": 382,
+        "wrong_known": 0,
+        "false_accepts": 12,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 472
+      }
+    },
+    {
+      "method": "landmarks_only",
+      "target": 0.02,
+      "rule": {
+        "score": -1000000.0,
+        "gap": 0.15811966359615326,
+        "landmark_weight": "landmarks"
+      },
+      "dev": {
+        "correct": 474,
+        "wrong_known": 0,
+        "false_accepts": 10,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 494
+      },
+      "test": {
+        "correct": 467,
+        "wrong_known": 0,
+        "false_accepts": 12,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 485
+      }
+    },
+    {
+      "method": "fusion",
+      "target": 0.02,
+      "rule": {
+        "score": 0.9411141872406007,
+        "gap": 0.09112030267715454,
+        "landmark_weight": 1.0
+      },
+      "dev": {
+        "correct": 480,
+        "wrong_known": 0,
+        "false_accepts": 10,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 496
+      },
+      "test": {
+        "correct": 473,
+        "wrong_known": 0,
+        "false_accepts": 12,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 487
+      }
+    },
+    {
+      "method": "cosine",
+      "target": 0.05,
+      "rule": {
+        "score": 0.6587464809417726,
+        "gap": 0.055718958377838135,
+        "landmark_weight": 0.0
+      },
+      "dev": {
+        "correct": 429,
+        "wrong_known": 2,
+        "false_accepts": 25,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 468
+      },
+      "test": {
+        "correct": 430,
+        "wrong_known": 1,
+        "false_accepts": 21,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 472
+      }
+    },
+    {
+      "method": "landmarks_only",
+      "target": 0.05,
+      "rule": {
+        "score": 0.11965811997652055,
+        "gap": 0.0535714253783226,
+        "landmark_weight": "landmarks"
+      },
+      "dev": {
+        "correct": 490,
+        "wrong_known": 0,
+        "false_accepts": 25,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 494
+      },
+      "test": {
+        "correct": 479,
+        "wrong_known": 0,
+        "false_accepts": 23,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 485
+      }
+    },
+    {
+      "method": "fusion",
+      "target": 0.05,
+      "rule": {
+        "score": 0.7264261841773988,
+        "gap": 0.09112030267715454,
+        "landmark_weight": 1.0
+      },
+      "dev": {
+        "correct": 494,
+        "wrong_known": 0,
+        "false_accepts": 25,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 496
+      },
+      "test": {
+        "correct": 482,
+        "wrong_known": 0,
+        "false_accepts": 26,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 487
+      }
+    },
+    {
+      "method": "cosine",
+      "target": 0.1,
+      "rule": {
+        "score": 0.6200821399688722,
+        "gap": 0.04644298553466797,
+        "landmark_weight": 0.0
+      },
+      "dev": {
+        "correct": 444,
+        "wrong_known": 2,
+        "false_accepts": 51,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 468
+      },
+      "test": {
+        "correct": 444,
+        "wrong_known": 1,
+        "false_accepts": 48,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 472
+      }
+    },
+    {
+      "method": "landmarks_only",
+      "target": 0.1,
+      "rule": {
+        "score": -1000000.0,
+        "gap": 0.04273504763841629,
+        "landmark_weight": "landmarks"
+      },
+      "dev": {
+        "correct": 492,
+        "wrong_known": 0,
+        "false_accepts": 41,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 494
+      },
+      "test": {
+        "correct": 479,
+        "wrong_known": 1,
+        "false_accepts": 40,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 485
+      }
+    },
+    {
+      "method": "fusion",
+      "target": 0.1,
+      "rule": {
+        "score": -1000000.0,
+        "gap": 0.05950725078582764,
+        "landmark_weight": 0.5
+      },
+      "dev": {
+        "correct": 495,
+        "wrong_known": 0,
+        "false_accepts": 51,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 496
+      },
+      "test": {
+        "correct": 481,
+        "wrong_known": 1,
+        "false_accepts": 47,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 488
+      }
+    },
+    {
+      "method": "cosine",
+      "target": null,
+      "rule": {
+        "score": -1000000.0,
+        "gap": 0.0,
+        "landmark_weight": 0.0
+      },
+      "dev": {
+        "correct": 468,
+        "wrong_known": 44,
+        "false_accepts": 512,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 468
+      },
+      "test": {
+        "correct": 472,
+        "wrong_known": 40,
+        "false_accepts": 512,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 472
+      }
+    },
+    {
+      "method": "landmarks_only",
+      "target": null,
+      "rule": {
+        "score": -1000000.0,
+        "gap": 0.0,
+        "landmark_weight": "landmarks"
+      },
+      "dev": {
+        "correct": 494,
+        "wrong_known": 18,
+        "false_accepts": 512,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 494
+      },
+      "test": {
+        "correct": 485,
+        "wrong_known": 27,
+        "false_accepts": 512,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 485
+      }
+    },
+    {
+      "method": "fusion",
+      "target": null,
+      "rule": {
+        "score": -1000000.0,
+        "gap": 0.0,
+        "landmark_weight": 0.25
+      },
+      "dev": {
+        "correct": 496,
+        "wrong_known": 16,
+        "false_accepts": 512,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 496
+      },
+      "test": {
+        "correct": 488,
+        "wrong_known": 24,
+        "false_accepts": 512,
+        "known": 512,
+        "unknown": 512,
+        "closed_top1": 488
+      }
+    }
+  ],
+  "paired": {
+    "retained": 314,
+    "lost": 30,
+    "gained": 104,
+    "paired_change_pp_ci": [
+      9.9609375,
+      19.140625
+    ],
+    "gained_by_promoting_candidate": 10,
+    "gained_by_accepting_previous_winner": 94,
+    "closed_promoted": 16,
+    "closed_demoted": 0,
+    "paired_closed_change_pp_ci": [
+      1.7578125,
+      4.6875
+    ]
+  },
+  "top5": 490,
+  "top5_by_family": {
+    "tiktok": 235,
+    "standard": 255
+  }
+}

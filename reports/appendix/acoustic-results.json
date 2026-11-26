@@ -1,0 +1,808 @@
+{
+  "methods": {
+    "lsh5": {
+      "0.0025": {
+        "rule": {
+          "weight": 8.0,
+          "score": 6.339076042175294,
+          "gap": 0.0
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 495,
+          "top5": 496,
+          "pool": 496,
+          "correct": 224,
+          "wrong_known": 0,
+          "fa": 1
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 486,
+          "top5": 490,
+          "pool": 490,
+          "correct": 222,
+          "wrong_known": 0,
+          "fa": 3
+        }
+      },
+      "0.01": {
+        "rule": {
+          "weight": 4.0,
+          "score": 2.469162464141846,
+          "gap": 0.0
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 496,
+          "top5": 496,
+          "pool": 496,
+          "correct": 428,
+          "wrong_known": 0,
+          "fa": 5
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 487,
+          "top5": 490,
+          "pool": 490,
+          "correct": 418,
+          "wrong_known": 1,
+          "fa": 9
+        }
+      },
+      "0.02": {
+        "rule": {
+          "weight": 1.0,
+          "score": 0.9411141872406007,
+          "gap": 0.09112030267715454
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 496,
+          "top5": 496,
+          "pool": 496,
+          "correct": 480,
+          "wrong_known": 0,
+          "fa": 10
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 487,
+          "top5": 490,
+          "pool": 490,
+          "correct": 473,
+          "wrong_known": 0,
+          "fa": 12
+        }
+      },
+      "0.05": {
+        "rule": {
+          "weight": 1.0,
+          "score": 0.7264261841773988,
+          "gap": 0.09112030267715454
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 496,
+          "top5": 496,
+          "pool": 496,
+          "correct": 494,
+          "wrong_known": 0,
+          "fa": 25
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 487,
+          "top5": 490,
+          "pool": 490,
+          "correct": 482,
+          "wrong_known": 0,
+          "fa": 26
+        }
+      },
+      "0.1": {
+        "rule": {
+          "weight": 0.5,
+          "score": -1000000.0,
+          "gap": 0.05950725078582764
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 496,
+          "top5": 496,
+          "pool": 496,
+          "correct": 495,
+          "wrong_known": 0,
+          "fa": 51
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 488,
+          "top5": 490,
+          "pool": 490,
+          "correct": 481,
+          "wrong_known": 1,
+          "fa": 47
+        }
+      },
+      "closed": {
+        "rule": {
+          "weight": 0.25,
+          "score": -1000000.0,
+          "gap": 0.0
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 496,
+          "top5": 496,
+          "pool": 496,
+          "correct": 496,
+          "wrong_known": 16,
+          "fa": 512
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 488,
+          "top5": 490,
+          "pool": 490,
+          "correct": 488,
+          "wrong_known": 24,
+          "fa": 512
+        }
+      }
+    },
+    "lsh10": {
+      "0.0025": {
+        "rule": {
+          "weight": 8.0,
+          "score": 6.339076042175294,
+          "gap": 0.0
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 498,
+          "top5": 499,
+          "pool": 499,
+          "correct": 224,
+          "wrong_known": 0,
+          "fa": 1
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 487,
+          "top5": 490,
+          "pool": 491,
+          "correct": 222,
+          "wrong_known": 0,
+          "fa": 3
+        }
+      },
+      "0.01": {
+        "rule": {
+          "weight": 4.0,
+          "score": 2.469162464141846,
+          "gap": 0.0
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 499,
+          "top5": 499,
+          "pool": 499,
+          "correct": 430,
+          "wrong_known": 0,
+          "fa": 5
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 488,
+          "top5": 490,
+          "pool": 491,
+          "correct": 418,
+          "wrong_known": 1,
+          "fa": 9
+        }
+      },
+      "0.02": {
+        "rule": {
+          "weight": 2.0,
+          "score": -1000000.0,
+          "gap": 0.24250435829162598
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 499,
+          "top5": 499,
+          "pool": 499,
+          "correct": 493,
+          "wrong_known": 0,
+          "fa": 10
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 489,
+          "top5": 491,
+          "pool": 491,
+          "correct": 479,
+          "wrong_known": 0,
+          "fa": 15
+        }
+      },
+      "0.05": {
+        "rule": {
+          "weight": 2.0,
+          "score": 1.0112847089767458,
+          "gap": 0.07873797416687012
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 499,
+          "top5": 499,
+          "pool": 499,
+          "correct": 497,
+          "wrong_known": 0,
+          "fa": 25
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 489,
+          "top5": 491,
+          "pool": 491,
+          "correct": 484,
+          "wrong_known": 2,
+          "fa": 30
+        }
+      },
+      "0.1": {
+        "rule": {
+          "weight": 1.0,
+          "score": 0.7264261841773988,
+          "gap": 0.0659174919128418
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 499,
+          "top5": 499,
+          "pool": 499,
+          "correct": 498,
+          "wrong_known": 0,
+          "fa": 51
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 488,
+          "top5": 491,
+          "pool": 491,
+          "correct": 486,
+          "wrong_known": 2,
+          "fa": 46
+        }
+      },
+      "closed": {
+        "rule": {
+          "weight": 0.5,
+          "score": -1000000.0,
+          "gap": 0.0
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 499,
+          "top5": 499,
+          "pool": 499,
+          "correct": 499,
+          "wrong_known": 13,
+          "fa": 512
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 489,
+          "top5": 491,
+          "pool": 491,
+          "correct": 489,
+          "wrong_known": 23,
+          "fa": 512
+        }
+      }
+    },
+    "dual": {
+      "0.0025": {
+        "rule": {
+          "weight": 8.0,
+          "score": 6.339076042175294,
+          "gap": 0.0
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 500,
+          "top5": 500,
+          "pool": 501,
+          "correct": 224,
+          "wrong_known": 0,
+          "fa": 1
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 499,
+          "top5": 502,
+          "pool": 503,
+          "correct": 226,
+          "wrong_known": 0,
+          "fa": 3
+        }
+      },
+      "0.01": {
+        "rule": {
+          "weight": 4.0,
+          "score": 2.469162464141846,
+          "gap": 0.0
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 501,
+          "top5": 501,
+          "pool": 501,
+          "correct": 432,
+          "wrong_known": 0,
+          "fa": 5
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 500,
+          "top5": 502,
+          "pool": 503,
+          "correct": 427,
+          "wrong_known": 1,
+          "fa": 10
+        }
+      },
+      "0.02": {
+        "rule": {
+          "weight": 4.0,
+          "score": -1000000.0,
+          "gap": 0.5440891981124878
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 501,
+          "top5": 501,
+          "pool": 501,
+          "correct": 489,
+          "wrong_known": 0,
+          "fa": 10
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 500,
+          "top5": 502,
+          "pool": 503,
+          "correct": 488,
+          "wrong_known": 1,
+          "fa": 11
+        }
+      },
+      "0.05": {
+        "rule": {
+          "weight": 1.0,
+          "score": 0.7264261841773988,
+          "gap": 0.09112030267715454
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 501,
+          "top5": 501,
+          "pool": 501,
+          "correct": 499,
+          "wrong_known": 0,
+          "fa": 25
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 500,
+          "top5": 503,
+          "pool": 503,
+          "correct": 494,
+          "wrong_known": 1,
+          "fa": 27
+        }
+      },
+      "0.1": {
+        "rule": {
+          "weight": 1.0,
+          "score": 0.7264261841773988,
+          "gap": 0.0659174919128418
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 501,
+          "top5": 501,
+          "pool": 501,
+          "correct": 500,
+          "wrong_known": 0,
+          "fa": 51
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 500,
+          "top5": 503,
+          "pool": 503,
+          "correct": 497,
+          "wrong_known": 1,
+          "fa": 49
+        }
+      },
+      "closed": {
+        "rule": {
+          "weight": 1.0,
+          "score": -1000000.0,
+          "gap": 0.0
+        },
+        "development": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 501,
+          "top5": 501,
+          "pool": 501,
+          "correct": 501,
+          "wrong_known": 11,
+          "fa": 512
+        },
+        "test": {
+          "known": 512,
+          "unknown": 512,
+          "top1": 500,
+          "top5": 503,
+          "pool": 503,
+          "correct": 500,
+          "wrong_known": 12,
+          "fa": 512
+        }
+      }
+    }
+  },
+  "previous_rule_on_dual": {
+    "0.0025": {
+      "known": 512,
+      "unknown": 512,
+      "top1": 499,
+      "top5": 502,
+      "pool": 503,
+      "correct": 226,
+      "wrong_known": 0,
+      "fa": 3
+    },
+    "0.01": {
+      "known": 512,
+      "unknown": 512,
+      "top1": 500,
+      "top5": 502,
+      "pool": 503,
+      "correct": 427,
+      "wrong_known": 1,
+      "fa": 10
+    },
+    "0.02": {
+      "known": 512,
+      "unknown": 512,
+      "top1": 500,
+      "top5": 503,
+      "pool": 503,
+      "correct": 485,
+      "wrong_known": 0,
+      "fa": 13
+    },
+    "0.05": {
+      "known": 512,
+      "unknown": 512,
+      "top1": 500,
+      "top5": 503,
+      "pool": 503,
+      "correct": 494,
+      "wrong_known": 1,
+      "fa": 27
+    },
+    "0.1": {
+      "known": 512,
+      "unknown": 512,
+      "top1": 500,
+      "top5": 502,
+      "pool": 503,
+      "correct": 491,
+      "wrong_known": 0,
+      "fa": 48
+    },
+    "closed": {
+      "known": 512,
+      "unknown": 512,
+      "top1": 497,
+      "top5": 500,
+      "pool": 503,
+      "correct": 497,
+      "wrong_known": 15,
+      "fa": 512
+    }
+  },
+  "paired": {
+    "closed": {
+      "gained": 13,
+      "lost": 1,
+      "correct_delta_95_pp": [
+        0.9765625,
+        3.90625
+      ]
+    },
+    "0.01": {
+      "gained": 9,
+      "lost": 0,
+      "correct_delta_95_pp": [
+        0.5859375,
+        3.125
+      ],
+      "fa_delta_95_pp": [
+        0.0,
+        0.5859375
+      ],
+      "dual_fa_95_pct": [
+        0.5859375,
+        3.7109375
+      ]
+    }
+  },
+  "misses": [
+    {
+      "query": 1589,
+      "track_id": 8367,
+      "group_id": 8367,
+      "distortion": "speed_up",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 1,
+      "dual_correct_accepted": true
+    },
+    {
+      "query": 1635,
+      "track_id": 143836,
+      "group_id": 143836,
+      "distortion": "speed_up+voice_over+compression",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 1,
+      "dual_correct_accepted": true
+    },
+    {
+      "query": 1641,
+      "track_id": 89940,
+      "group_id": 89940,
+      "distortion": "speed_up+voice_over+compression",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 1,
+      "dual_correct_accepted": false
+    },
+    {
+      "query": 1655,
+      "track_id": 26563,
+      "group_id": 26563,
+      "distortion": "speed_up+voice_over+compression",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 0,
+      "dual_correct_accepted": false
+    },
+    {
+      "query": 1673,
+      "track_id": 121421,
+      "group_id": 121421,
+      "distortion": "speed_up+voice_over+compression",
+      "lsh10_rank": 1,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 1,
+      "dual_correct_accepted": false
+    },
+    {
+      "query": 1687,
+      "track_id": 8568,
+      "group_id": 8568,
+      "distortion": "voice_over",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 1,
+      "dual_correct_accepted": false
+    },
+    {
+      "query": 1709,
+      "track_id": 99976,
+      "group_id": 99976,
+      "distortion": "speed_up+voice_over+compression",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 0,
+      "dual_correct_accepted": false
+    },
+    {
+      "query": 1719,
+      "track_id": 138502,
+      "group_id": 138502,
+      "distortion": "speed_up",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 1,
+      "dual_correct_accepted": true
+    },
+    {
+      "query": 1767,
+      "track_id": 51443,
+      "group_id": 51443,
+      "distortion": "speed_up+voice_over+compression",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 0,
+      "dual_correct_accepted": false
+    },
+    {
+      "query": 1771,
+      "track_id": 40554,
+      "group_id": 40554,
+      "distortion": "speed_up+voice_over+compression",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 0,
+      "dual_correct_accepted": false
+    },
+    {
+      "query": 1779,
+      "track_id": 154884,
+      "group_id": 154884,
+      "distortion": "speed_up+voice_over+compression",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 0,
+      "dual_correct_accepted": false
+    },
+    {
+      "query": 1796,
+      "track_id": 50361,
+      "group_id": 50361,
+      "distortion": "noise",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 1,
+      "dual_correct_accepted": true
+    },
+    {
+      "query": 1797,
+      "track_id": 50361,
+      "group_id": 50361,
+      "distortion": "speed_up",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 1,
+      "dual_correct_accepted": true
+    },
+    {
+      "query": 1811,
+      "track_id": 57486,
+      "group_id": 57486,
+      "distortion": "voice_over",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 1,
+      "dual_correct_accepted": false
+    },
+    {
+      "query": 1813,
+      "track_id": 64174,
+      "group_id": 64174,
+      "distortion": "speed_up",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 1,
+      "dual_correct_accepted": true
+    },
+    {
+      "query": 1821,
+      "track_id": 115461,
+      "group_id": 115461,
+      "distortion": "speed_up",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 1,
+      "dual_correct_accepted": true
+    },
+    {
+      "query": 1825,
+      "track_id": 89353,
+      "group_id": 89353,
+      "distortion": "speed_up+voice_over+compression",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 1,
+      "dual_correct_accepted": true
+    },
+    {
+      "query": 1843,
+      "track_id": 124593,
+      "group_id": 124593,
+      "distortion": "speed_up+voice_over+compression",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 0,
+      "dual_correct_accepted": false
+    },
+    {
+      "query": 1875,
+      "track_id": 76396,
+      "group_id": 76396,
+      "distortion": "speed_up",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 1,
+      "dual_correct_accepted": true
+    },
+    {
+      "query": 1895,
+      "track_id": 138793,
+      "group_id": 138793,
+      "distortion": "speed_up+voice_over+compression",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 0,
+      "dual_correct_accepted": false
+    },
+    {
+      "query": 2007,
+      "track_id": 70697,
+      "group_id": 70697,
+      "distortion": "speed_up+voice_over+compression",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 0,
+      "dual_correct_accepted": false
+    },
+    {
+      "query": 2033,
+      "track_id": 154927,
+      "group_id": 154927,
+      "distortion": "voice_over",
+      "lsh10_rank": 0,
+      "lsh10_correct_accepted": false,
+      "dual_rank": 0,
+      "dual_correct_accepted": false
+    }
+  ],
+  "acoustic_only_top5": 395,
+  "mean_dual_pool": 9.603515625
+}
