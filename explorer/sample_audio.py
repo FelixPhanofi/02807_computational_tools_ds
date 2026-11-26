@@ -19,10 +19,14 @@ def serve_sample(handler):
     start = track["start"]
     end = start + track["compressed"] - 1
     # A per-track cache key keeps intermediary caches from mixing different partial responses.
-    request = Request(f"{ARCHIVE}?sample={values[0]}", headers={"Range": f"bytes={start}-{end}", "Accept-Encoding": "identity"})
+    request = Request(
+        f"{ARCHIVE}?sample={values[0]}", headers={"Range": f"bytes={start}-{end}", "Accept-Encoding": "identity"}
+    )
     try:
         with urlopen(request, timeout=18) as response:
-            if response.status != 206 or not response.headers.get("Content-Range", "").startswith(f"bytes {start}-{end}/"):
+            if response.status != 206 or not response.headers.get("Content-Range", "").startswith(
+                f"bytes {start}-{end}/"
+            ):
                 raise ValueError("Archive did not honor the byte range")
             compressed = response.read(track["compressed"] + 1)
         if len(compressed) != track["compressed"]:
