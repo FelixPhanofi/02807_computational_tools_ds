@@ -1,0 +1,52 @@
+{
+  "source": "d0be3706a8b4a0b7c62e5c60b631fd3fd1abf618",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "medium": {
+    "correct": {
+      "standard": {
+        "exact": 7315,
+        "lsh": 7315,
+        "ivf": 7274
+      },
+      "tiktok": {
+        "exact": 8411,
+        "lsh": 8411,
+        "ivf": 8342
+      }
+    },
+    "median_lookup_ms": {
+      "exact": 0.17299999672104605,
+      "lsh": 0.08150000212481245,
+      "ivf": 0.06990000110818073
+    },
+    "batch128_queries_per_s": {
+      "exact": 376036.09951529704,
+      "lsh": 71854.26818831693,
+      "ivf": 433446.81125049427
+    }
+  },
+  "large": {
+    "correct": {
+      "standard": {
+        "exact": 7185,
+        "lsh": 7195,
+        "ivf": 7159
+      },
+      "tiktok": {
+        "exact": 8095,
+        "lsh": 8111,
+        "ivf": 8044
+      }
+    },
+    "median_lookup_ms": {
+      "exact": 0.5848500004503876,
+      "lsh": 0.25329999698442407,
+      "ivf": 0.12384999718051404
+    },
+    "batch128_queries_per_s": {
+      "exact": 95267.49316458375,
+      "lsh": 7056.802152408683,
+      "ivf": 89420.30096277234
+    }
+  }
+}

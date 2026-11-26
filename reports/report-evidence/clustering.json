@@ -1,0 +1,92 @@
+{
+  "settings": {
+    "k": 256,
+    "probes": 16,
+    "fit_sample": 16384,
+    "fit_seed": 2807,
+    "max_iter": 20,
+    "query_seed": 280711
+  },
+  "medium": {
+    "windows": 110320,
+    "tracks": 24970,
+    "largest_cluster_share": 0.009925670775924583,
+    "families": {
+      "queries": {
+        "queries": 128,
+        "exact_correct": 126,
+        "ivf_correct": 124,
+        "track_agreement": 126,
+        "mean_window_share": 0.062318992476432196,
+        "all_probe_checks": 8
+      },
+      "queries_tiktok": {
+        "queries": 128,
+        "exact_correct": 123,
+        "ivf_correct": 121,
+        "track_agreement": 126,
+        "mean_window_share": 0.0626413501631617,
+        "all_probe_checks": 8
+      }
+    }
+  },
+  "large": {
+    "windows": 464464,
+    "tracks": 105705,
+    "largest_cluster_share": 0.00767982017982018,
+    "families": {
+      "queries": {
+        "queries": 128,
+        "exact_correct": 124,
+        "ivf_correct": 124,
+        "track_agreement": 126,
+        "mean_window_share": 0.06244313001115264,
+        "all_probe_checks": 8
+      },
+      "queries_tiktok": {
+        "queries": 128,
+        "exact_correct": 118,
+        "ivf_correct": 115,
+        "track_agreement": 123,
+        "mean_window_share": 0.061577666675996415,
+        "all_probe_checks": 8
+      }
+    }
+  },
+  "small_dbscan": {
+    "linked_pairs": 69,
+    "noise_share": 0.8263912501416751,
+    "families": {
+      "queries": {
+        "strict_errors": 34,
+        "linked_errors": 5,
+        "queries": 2000
+      },
+      "queries_tiktok": {
+        "strict_errors": 200,
+        "linked_errors": 6,
+        "queries": 2000
+      }
+    },
+    "example": {
+      "family": "queries_tiktok",
+      "query_row": 115,
+      "source_id": 86761,
+      "returned_id": 74348,
+      "query_start_s": 11.282917022705078,
+      "reference_start_s": 10.0,
+      "artist_a": "Marco Trovatello",
+      "title_a": "Be Sweet",
+      "artist_b": "Marco Trovatello",
+      "title_b": "Be Sweet",
+      "track_a": 74348,
+      "track_b": 86761,
+      "strongest_window_cosine": 1.000000238418579,
+      "pcm_sha256": {
+        "86761": "bc96447f0b73e97adf828eda0ef8d1b322236f775e9a0211082ce9481590cd43",
+        "74348": "bc96447f0b73e97adf828eda0ef8d1b322236f775e9a0211082ce9481590cd43"
+      },
+      "identical_pcm": true
+    }
+  }
+}

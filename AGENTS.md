@@ -21,3 +21,5 @@
 * Follow existing style; line length 120; f-strings; type hints; no inline comments unless absolutely necessary.
 * All functions and classes have Google-style docstrings.
 * Update this file when tools or commands are added.
+
+The report replay and the three optional full measurement commands are documented in [reports/report-evidence/README.md](reports/report-evidence/README.md).

@@ -1,0 +1,61 @@
+{
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "queries": {
+    "standard": 7458,
+    "tiktok": 8992
+  },
+  "medium": {
+    "windows": 110320,
+    "tracks": 24970,
+    "reference_sha256": "174234b82db42e42839b26b7d52372b908075d5724451037b26e4a865d33a9b9",
+    "families": {
+      "standard": {
+        "exact": 7315,
+        "lsh": 7315,
+        "ivf": 7274
+      },
+      "tiktok": {
+        "exact": 8411,
+        "lsh": 8411,
+        "ivf": 8342
+      }
+    },
+    "median_lookup_ms": {
+      "exact": 0.18080000000000002,
+      "lsh": 0.0901,
+      "ivf": 0.07705000000000001
+    },
+    "batch128_queries_per_s": {
+      "exact": 361728.4683596102,
+      "lsh": 67744.31606666006,
+      "ivf": 419191.5845746404
+    }
+  },
+  "large": {
+    "windows": 464464,
+    "tracks": 105705,
+    "reference_sha256": "128ec22bf1254a8219b9750f9c66f38d1de04e5f990ef1943f8711c4ec13eb3d",
+    "families": {
+      "standard": {
+        "exact": 7185,
+        "lsh": 7195,
+        "ivf": 7159
+      },
+      "tiktok": {
+        "exact": 8095,
+        "lsh": 8111,
+        "ivf": 8044
+      }
+    },
+    "median_lookup_ms": {
+      "exact": 0.591,
+      "lsh": 0.2666,
+      "ivf": 0.13025
+    },
+    "batch128_queries_per_s": {
+      "exact": 93251.9065621732,
+      "lsh": 6901.792485712958,
+      "ivf": 87672.26667743348
+    }
+  }
+}

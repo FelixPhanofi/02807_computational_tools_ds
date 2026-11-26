@@ -1,6 +1,20 @@
 # Neural audio fingerprinting
 
-DTU 02807 Computational Tools for Data Science, deadline 4 December 2026. Identify a song from a short, possibly distorted TikTok-like clip, following [Robust Neural Audio Fingerprinting using Music Foundation Models](https://arxiv.org/abs/2511.05399): a frozen pretrained MuQ model (the paper's best backbone) turns 10 s windows into 256-number fingerprints that stay similar under noise, compression, speed changes and similar distortions. Locality-sensitive hashing (LSH) and a k-means inverted-file index search the fingerprints, measuring the accuracy/speed trade-off against exhaustive search; k-means and DBSCAN expose non-obvious connections between tracks (duplicates, remixes, covers, samples). Evaluation uses synthetic distortions, including held-out TikTok-like ones (sped-up playback, voice-over, compression) the model never trains on.
+DTU 02807 Computational Tools for Data Science, deadline 4 December 2026. Identify a song from a short, possibly distorted TikTok-like clip, following [Robust Neural Audio Fingerprinting using Music Foundation Models](https://arxiv.org/abs/2511.05399): a frozen pretrained MuQ model (the paper's best backbone) turns 10 s windows into 256-number fingerprints that stay similar under noise, compression, speed changes and similar distortions. Locality-sensitive hashing (LSH) and a k-means inverted-file index search the fingerprints, measuring the accuracy/speed trade-off against exhaustive search; k-means and DBSCAN expose non-obvious connections between tracks (duplicates, remixes, covers, samples). Evaluation uses synthetic distortions, including TikTok-like edits (sped-up playback, voice-over and compression). Voice-over training and evaluation use disjoint speakers.
+
+## Report findings
+
+**Start here:** [short report (PDF)](reports/report-draft.pdf) · [runnable report notebook](notebooks/report_findings.ipynb) · [experiment inputs and full rerun commands](reports/report-evidence/README.md). Run the notebook top to bottom on CPU. It performs a real lookup on a small fingerprint sample and recomputes the full accuracy table from saved per-query predictions.
+
+On 8,992 held-out Medium TikTok-like queries, the trained 256-dimensional projection increased exact-search accuracy from **58.02% to 93.54%** relative to raw MuQ. Adding 80,735 reference tracks with that head and those queries fixed cost exhaustive search **316 correct answers**. The table shows the Large catalogue results from the original paired RTX 4090 run. Every accuracy count reproduced on the released fingerprints.
+
+| Large search | Standard top-1 (7,458) | TikTok-like top-1 (8,992) | Median single lookup | Queries/s in batches of 128 |
+|---|---:|---:|---:|---:|
+| Exhaustive cosine | 96.34% | 90.02% | 0.585 ms | **95,267** |
+| Angular LSH | **96.47%** | **90.20%** | 0.253 ms | 7,057 |
+| Spherical k-means IVF | 95.99% | 89.46% | **0.124 ms** | 89,420 |
+
+LSH gave near-exhaustive recognition at 2.31× the single-query lookup speed. IVF gave the fastest single lookup; dense exhaustive search won in batches. The timer starts with a fingerprint in GPU memory. On Small, DBSCAN linked 69 track pairs. For one strict-ID miss, two IDs for Marco Trovatello’s *Be Sweet* had identical decoded audio. The notebook traces that example to the query and reference timestamps.
 
 ## Setup
 
@@ -18,10 +32,13 @@ uv run invoke --list       # test, data, fmt
 
 [Free Music Archive](https://github.com/mdeff/fma) (FMA; Defferrard et al., ISMIR 2017): 30 s mp3 clips plus metadata. Audio is under each artist's licence and meant for research, so it is downloaded, not redistributed.
 
-| Subset | Clips | Zip | Processed | Notes |
+| FMA subset | Source tracks | Searchable tracks | Searchable windows | Fingerprint download |
 |---|---:|---:|---:|---|
-| `small` | 8,000 | 7.7 GB | 11.5 GB | 7,994 decode; 6 corrupt mp3s skipped |
-| `medium` | 25,000 | 22 GB (22.19 GiB) | 36 GB | same code, `--subset medium` |
+| Small | 8,000 | 7,989 | 35,292 | [v0.2 (Small head and queries)](https://github.com/nickiliak/02807_computational_tools_ds/releases/tag/v0.2-fingerprints) |
+| Medium | 25,000 | 24,970 | 110,320 | [Medium ZIP](https://github.com/nickiliak/02807_computational_tools_ds/releases/download/v0.3-fingerprints/fma-medium-fingerprints.zip) |
+| Large | 106,574 | 105,705 | 464,464 | [Large ZIP](https://github.com/nickiliak/02807_computational_tools_ds/releases/download/v0.3-fingerprints/fma-large-fingerprints.zip) |
+
+Extract the Medium and Large ZIPs in the repository root. They include the shared Medium query fingerprints, window and track IDs, and metadata. All 110,320 Medium reference windows are preserved in Large. Small’s separately trained head and query set make its original scores a separate experiment. [Shared head, pre-projection features, optional open-set queries and checksums](https://github.com/nickiliak/02807_computational_tools_ds/releases/tag/v0.3-fingerprints).
 
 ```bash
 uv run python -m afp.data --subset small             # download + process everything (resumable, SHA-1 checked)
