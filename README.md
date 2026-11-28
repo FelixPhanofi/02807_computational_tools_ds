@@ -158,9 +158,23 @@ Davies-Bouldin keeps falling as `k` grows (4.0 at 32, 2.8 at 1024): the fingerpr
 
 ```bash
 uv run python -m afp.related --min-similarity 0.9 --min-points 2   # writes dbscan_sweep.csv, related_pairs.csv
+uv run python -m afp.related --data-dir data/large --sweep --show 0  # Large: one setting, about 10 min on CPU
 ```
 
-At 0.9 and `min_points` 2: 82.6% of windows are noise, 69 track pairs are linked, 97% by the same artist (duplicate uploads, album/single, instrumental/vocal versions, a radio edit, a live version, remixes, two across artists). Some exact-search misses are such versions: 5 of 34 standard and 7 of 201 TikTok-like misses return a linked version of the right song.
+Besides the linked pairs, the command prints how many pairs fall in chained track groups of each size, and exact-search top-1 both strict and counting a linked version of the source track as correct (all queries in each set).
+
+At 0.9 and `min_points` 2 (Medium and Large from release `v0.3-fingerprints`):
+
+| | Small | Medium | Large |
+|---|---:|---:|---:|
+| Windows | 35,292 | 110,320 | 464,464 |
+| Noise | 82.6% | 79.9% | 74.5% |
+| Linked track pairs | 69 | 316 | 6,642 |
+| Same artist | 97% | 96% | 66% |
+| Standard top-1, strict → versions count | 98.3 → 98.6 | 98.0 → 99.0 | 96.3 → 98.4 |
+| TikTok-like top-1, strict → versions count | 90.0 → 90.3 | 93.6 → 94.3 | 90.0 → 91.8 |
+
+Linked pairs are duplicate uploads, album/single, instrumental/vocal and live versions, radio edits and remixes, some across artists or under alternative artist names. Duplicates explain a growing share of strict misses: 212 of 370 standard misses on Large return a linked version of the right song. On Large, `min_points` 2 chains like single-linkage: pairs in groups of up to 10 tracks are about 85% same-artist, but noisy experimental and drone tracks bridge larger groups (one of 86 tracks) that are 32% same-artist. Raising `min_points` makes this worse, because those tracks are the densest region; a stricter 0.95 threshold shrinks the largest cluster from 86 to 22 tracks (4,472 pairs, 71% same artist).
 
 ## Layout
 

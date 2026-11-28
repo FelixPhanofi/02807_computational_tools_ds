@@ -3,7 +3,38 @@ import pandas as pd
 from sklearn.cluster import DBSCAN
 from sklearn.metrics import adjusted_rand_score
 
-from afp.related import dbscan, describe_pairs, shared_track_pairs
+from afp.related import (
+    dbscan,
+    describe_pairs,
+    group_summary,
+    shared_track_pairs,
+    track_groups,
+    version_aware_top1,
+)
+
+
+def test_version_aware_top1_counts_a_linked_version_as_correct():
+    pairs = pd.DataFrame({"track_a": [1, 5], "track_b": [2, 6]})
+    source = np.array([1, 2, 3, 5, 7])
+    predicted = np.array([1, 1, 4, 6, 7])
+    result = version_aware_top1(predicted, source, pairs)
+    assert result == {"queries": 5, "misses": 3, "linked_misses": 2, "top1": 0.4, "top1_versions": 0.8}
+
+
+def test_track_groups_and_summary_measure_chaining():
+    pairs = pd.DataFrame(
+        {
+            "track_a": [1, 2, 3, 10, 20],
+            "track_b": [2, 3, 4, 11, 21],
+            "same_artist": [False, False, True, True, True],
+        }
+    )
+    groups = track_groups(pairs)
+    assert list(groups["group_size"]) == [4, 4, 4, 2, 2]
+    assert groups["group"].iloc[:3].nunique() == 1 and groups["group"].nunique() == 3
+    summary = group_summary(pairs, bounds=(2,)).set_index("group_size")
+    assert summary.loc["2-2", "groups"] == 2 and summary.loc["2-2", "same_artist"] == 1.0
+    assert summary.loc[">2", "pairs"] == 3 and np.isclose(summary.loc[">2", "same_artist"], 1 / 3)
 
 
 def _unit(x: np.ndarray) -> np.ndarray:

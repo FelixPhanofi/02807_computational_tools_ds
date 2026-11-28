@@ -12,13 +12,14 @@ The neighbourhood radius is given as a cosine similarity ``s``. For unit vectors
 """
 
 import argparse
+import sys
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-from afp.cluster import davies_bouldin
-from afp.paths import FINGERPRINTS_DIR
+from afp.cluster import davies_bouldin, exhaustive_search
+from afp.paths import FINGERPRINTS_DIR, QUERY_KINDS
 
 
 def radius_neighbours(x: np.ndarray, min_similarity: float, chunk: int = 2048) -> tuple[np.ndarray, np.ndarray]:
@@ -169,6 +170,88 @@ def sweep(
     return pd.DataFrame(rows)
 
 
+def version_aware_top1(predicted: np.ndarray, source: np.ndarray, pairs: pd.DataFrame) -> dict[str, float]:
+    """Top-1 accuracy, strict and with a linked version of the source track also counted as correct.
+
+    FMA contains duplicate uploads and alternative versions of the same recording, so a strict "miss" can be the
+    right song under another track id.
+
+    Args:
+        predicted: Predicted track id per query.
+        source: Source track id per query.
+        pairs: Linked track pairs, as returned by :func:`shared_track_pairs`.
+
+    Returns:
+        A dict with ``queries``, ``misses``, ``linked_misses`` (misses that predicted a linked version), ``top1`` and
+        ``top1_versions``.
+    """
+    linked = set(zip(pairs["track_a"], pairs["track_b"])) | set(zip(pairs["track_b"], pairs["track_a"]))
+    miss = predicted != source
+    version = np.array([(int(s), int(p)) in linked for s, p in zip(source, predicted)], dtype=bool)
+    n = len(predicted)
+    return {
+        "queries": n,
+        "misses": int(miss.sum()),
+        "linked_misses": int((miss & version).sum()),
+        "top1": float(1 - miss.mean()) if n else float("nan"),
+        "top1_versions": float(1 - (miss & ~version).mean()) if n else float("nan"),
+    }
+
+
+def track_groups(pairs: pd.DataFrame) -> pd.DataFrame:
+    """Group linked tracks into connected components, to show how far DBSCAN chained them together.
+
+    Args:
+        pairs: Linked track pairs with ``track_a`` and ``track_b``.
+
+    Returns:
+        A table aligned with ``pairs`` with the ``group`` id of each pair and the ``group_size`` in tracks.
+    """
+    parent: dict[int, int] = {}
+
+    def find(track: int) -> int:
+        parent.setdefault(track, track)
+        while parent[track] != track:
+            parent[track] = parent[parent[track]]
+            track = parent[track]
+        return track
+
+    for a, b in zip(pairs["track_a"], pairs["track_b"]):
+        parent[find(int(a))] = find(int(b))
+    sizes = pd.Series([find(track) for track in list(parent)]).value_counts()
+    group = pairs["track_a"].map(lambda track: find(int(track)))
+    return pd.DataFrame({"group": group, "group_size": group.map(sizes)}, index=pairs.index)
+
+
+def group_summary(pairs: pd.DataFrame, bounds: tuple[int, ...] = (2, 10)) -> pd.DataFrame:
+    """Linked pairs and their same-artist share by size of the track group they belong to.
+
+    A large group means DBSCAN chained many tracks together through pairwise links, which with ``min_points = 2``
+    behaves like single-linkage clustering.
+
+    Args:
+        pairs: Output of :func:`describe_pairs`.
+        bounds: Upper bounds of the group-size bands; a last band holds every larger group.
+
+    Returns:
+        One row per band with ``group_size``, ``groups``, ``pairs`` and ``same_artist``.
+    """
+    groups = track_groups(pairs)
+    edges = [1, *bounds, np.inf]
+    rows = []
+    for low, high in zip(edges[:-1], edges[1:]):
+        band = (groups["group_size"] > low) & (groups["group_size"] <= high)
+        rows.append(
+            {
+                "group_size": f"{low + 1}-{int(high)}" if np.isfinite(high) else f">{low}",
+                "groups": int(groups.loc[band, "group"].nunique()),
+                "pairs": int(band.sum()),
+                "same_artist": float(pairs.loc[band, "same_artist"].mean()) if band.any() else float("nan"),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
 def main(argv: list[str] | None = None) -> None:
     """Command line entry point: DBSCAN parameter sweep, then the linked track pairs for the chosen setting."""
     parser = argparse.ArgumentParser(description="Find tracks that share audio with DBSCAN on the fingerprints.")
@@ -176,7 +259,10 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--min-similarity", type=float, default=0.9, help="cosine threshold for neighbours")
     parser.add_argument("--min-points", type=int, default=2, help="neighbours needed for a core point")
     parser.add_argument("--sweep", type=float, nargs="*", default=[0.85, 0.9, 0.95], help="thresholds to compare")
+    parser.add_argument("--show", type=int, default=40, help="linked pairs to print")
     args = parser.parse_args(argv)
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
     processed = args.data_dir / "processed"
     references = np.load(processed / FINGERPRINTS_DIR / "references.npz")
@@ -193,8 +279,23 @@ def main(argv: list[str] | None = None) -> None:
     pairs = describe_pairs(shared_track_pairs(vectors, track_id, labels), manifest)
     pairs.to_csv(processed / FINGERPRINTS_DIR / "related_pairs.csv", index=False)
     columns = ["max_similarity", "shared_clusters", "artist_a", "title_a", "artist_b", "title_b"]
-    with pd.option_context("display.max_colwidth", 35, "display.width", 200):
-        print(pairs[columns].to_string(index=False, float_format=lambda x: f"{x:.3f}"))
+    if args.show > 0:
+        with pd.option_context("display.max_colwidth", 35, "display.width", 200):
+            print(pairs[columns].head(args.show).to_string(index=False, float_format=lambda x: f"{x:.3f}"))
+        print()
+    print(f"{len(pairs)} linked track pairs; by size of the chained track group:")
+    print(group_summary(pairs).to_string(index=False, float_format=lambda x: f"{x:.3f}"))
+
+    rows = []
+    for kind in QUERY_KINDS:
+        path = processed / FINGERPRINTS_DIR / f"{kind}.npz"
+        if path.exists():
+            queries = np.load(path)
+            predicted = track_id[exhaustive_search(vectors, queries["vectors"])]
+            rows.append({"queries_set": kind, **version_aware_top1(predicted, queries["track_id"], pairs)})
+    if rows:
+        print("\nExact-search top-1, strict and counting a linked version of the source track as correct:")
+        print(pd.DataFrame(rows).to_string(index=False, float_format=lambda x: f"{x:.4f}"))
 
 
 if __name__ == "__main__":
